@@ -1,0 +1,15 @@
+<phpunit bootstrap="./bootstrap.php" colors="true">
+	<testsuites>
+		<testsuite name="[MyApplication] TwitterBootstrap component API - Test Suite">
+			<directory>./</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist>
+			<directory>./</directory>
+			<exclude>
+				<directory>./</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>
