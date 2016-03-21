@@ -1,0 +1,78 @@
+<?php 
+	/** @var \UIComponents\View\Helper\Bootstrap $oBootstrap **/
+	$oBootstrap = $this->Bootstrap();
+	/** @var \UIComponents\View\Helper\Components $oComponents **/
+	$oComponents = $this->Components();
+	/** @var \Admin\Entity\User $oUser **/
+	$oUser = $this->zfcUserIdentity();
+?>
+<h4>Void</h4>
+<div class="clearfix"><?php 
+	$body = $oComponents()->Void(array(
+			'tagname'	=> 'div',
+			'classnames'=> 'callout well',
+	))->setContent('some content...');
+	$someContent = $body;
+	echo $body->render();
+?></div>
+
+<hr />
+<h4>Block</h4>
+<div class="clearfix"><?php echo ($block = $oComponents->Block()
+	->setHeader("Here come the header...")
+	->setFooter("Here come the footer...")
+	->render()
+); ?></div>
+
+<hr />
+<h4>Panel</h4>
+<div class="clearfix"><?php 
+
+	$body = $oComponents()->Void(array(
+			'tagname'	=> 'div',
+			'classnames'=> 'panel-body',
+	))->setContent("<em>content, content, content...</em>");
+	
+	$header = $oComponents()->Void( 
+		array(
+			'tagname'		=> 'div',
+			'classnames'	=> 'panel-heading',
+			'content'		=> array(
+				'tagname'		=> 'h3',
+				'classnames'	=> 'panel-title',
+				'content'		=> 'my header...'
+			)
+		) 
+	);
+	$panel = $oComponents()->Panel()
+		->setHeader( $header
+		)
+		->setContent( array(
+			array(
+				'tagname'		=> 'div',
+				'classnames'	=> 'panel-body',
+				'content'		=> 'here comes the widget content...'
+			),
+			array(
+				'tagname'		=> 'div',
+				'classnames'	=> 'panel-body',
+				'content'		=> array(
+					'<p>here comes more content...</p>',
+					'<p>here comes more content...</p>',
+					'<p><a id="xhrtest" class="fancybox.ajax" href="'.$this->url('application/default', array('controller' => 'index', 'action' => 'xhrtest', )).'">AJAX/XMLHTTPRequest test</a></p>',
+					$someContent
+				)
+			),
+			$body
+		) )
+		->setFooter( array(
+			'tagname'		=> 'div',
+			'classnames'	=> 'panel-footer',
+			'content'		=> 'footer content...'
+		) )
+	;
+	
+ 	$panel->setTagname('section');
+	echo $panel->render();
+	
+?></div>

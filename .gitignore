@@ -5,7 +5,6 @@
 *cache*
 *vendor*
 data/
-components/
 public/js/*/*
 public/css/*/*
 composer.lock
