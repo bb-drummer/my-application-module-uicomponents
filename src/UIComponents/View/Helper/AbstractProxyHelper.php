@@ -120,6 +120,11 @@ class AbstractProxyHelper extends AbstractHelper
 			if (method_exists($helper, "setServiceLocator") && $this->getServiceLocator()) {
 				$helper->setServiceLocator($this->getServiceLocator());
 			}
+
+			if (method_exists($helper, "setTranslator") && $this->getTranslator()) {
+				$helper->setTranslator($this->getTranslator());
+			}
+			
 			return call_user_func_array($helper, $arguments);
 		}
 
