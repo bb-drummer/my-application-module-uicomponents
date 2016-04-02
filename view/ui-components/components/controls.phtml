@@ -1,10 +1,10 @@
 <?php 
-	/** @var \UIComponents\View\Helper\Utilities $oUtilities **/
-	$oUtilities = $this->Utilities();
-	/** @var \UIComponents\View\Helper\Components $oComponents **/
-	$oComponents = $this->Components();
-	/** @var \Admin\Entity\User $oUser **/
-	$oUser = $this->zfcUserIdentity();
+    /** @var \UIComponents\View\Helper\Utilities $oUtilities **/
+    $oUtilities = $this->Utilities();
+    /** @var \UIComponents\View\Helper\Components $oComponents **/
+    $oComponents = $this->Components();
+    /** @var \Admin\Entity\User $oUser **/
+    $oUser = $this->zfcUserIdentity();
 ?>
 <h4>Single Button</h4>
 <div class="clearfix well"><?php echo $oComponents->Button(); ?></div>
@@ -19,9 +19,9 @@ $btn2 = $oComponents->Button(array('label' => 'button 2', 'tagname' => 'button')
 $btn3 = $oComponents->Button(array('label' => 'button 3', 'disabled' => 'disabled'))->render();
 
 echo $oComponents->ButtonGroup(array(
-	'buttons' => array( 
-		$btn1, $btn2, $btn3, 
-	)	
+    'buttons' => array( 
+        $btn1, $btn2, $btn3, 
+    )    
 )); 
 
  ?></div>
@@ -29,12 +29,12 @@ echo $oComponents->ButtonGroup(array(
 <hr />
 <h4>Different Setup Button Group</h4>
 <div class="clearfix well"><?php echo $oComponents->ButtonGroup(array(
-	'block' => true,
-	'vertical' => true,
-	'buttons' => array( 
-		$oComponents->Button(array('label' => 'button 1', 'type' => 'warning')), 
-		$oComponents->Button(array('label' => 'button 2', 'tagname' => 'button', 'disabled' => 'disabled')),
-		$oComponents->Button(array('label' => 'button 3', 'block' => true)), 
-	)	
+    'block' => true,
+    'vertical' => true,
+    'buttons' => array( 
+        $oComponents->Button(array('label' => 'button 1', 'type' => 'warning')), 
+        $oComponents->Button(array('label' => 'button 2', 'tagname' => 'button', 'disabled' => 'disabled')),
+        $oComponents->Button(array('label' => 'button 3', 'block' => true)), 
+    )    
 )); ?></div>
 
