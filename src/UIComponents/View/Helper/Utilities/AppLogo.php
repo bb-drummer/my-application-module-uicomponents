@@ -20,7 +20,8 @@ namespace UIComponents\View\Helper\Bootstrap;
  * render nothing
  *
  */
-class AppLogo extends AbstractHelper implements \Zend\ServiceManager\ServiceLocatorAwareInterface
+class AppLogo extends UIComponents\View\Helper\AbstractHelper 
+//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
 	/**

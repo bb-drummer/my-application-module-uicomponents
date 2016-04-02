@@ -20,7 +20,8 @@ namespace UIComponents\View\Helper\Bootstrap;
  * render nothing
  *
  */
-class AppFavicon extends AbstractHelper implements \Zend\ServiceManager\ServiceLocatorAwareInterface
+class AppFavicon extends UIComponents\View\Helper\AbstractHelper 
+//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
 	/**
