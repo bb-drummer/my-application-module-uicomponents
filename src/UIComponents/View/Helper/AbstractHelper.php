@@ -26,8 +26,6 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View;
 use Zend\View\Exception;
-//use UIComponents\View\Helper\Components;
-//use UIComponents\View\Helper\Utilities;
 
 /**
  * Base class for navigational helpers
@@ -461,13 +459,45 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
 		// except for "data-" and "aria-" attributes
 		foreach ($attribs as $key => $value) {
 			if ($value === null || (is_string($value) && !strlen($value))) {
-				if ( (strpos($key, "data") == 0) && (strpos($key, "aria") == 0) ) {
+				if ( (strpos($key, "data") === false) && (strpos($key, "aria") === false) ) {
 					unset($attribs[$key]);
 				}
 			}
 		}
 
-		return parent::htmlAttribs($attribs);
+        $xhtml          = '';
+        $escaper        = $this->getView()->plugin('escapehtml');
+        $escapeHtmlAttr = $this->getView()->plugin('escapehtmlattr');
+
+        foreach ((array) $attribs as $key => $val) {
+            $key = $escaper($key);
+
+            if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
+                // Don't escape event attributes; _do_ substitute double quotes with singles
+                if (!is_scalar($val)) {
+                    // non-scalar data should be cast to JSON first
+                    $val = \Zend\Json\Json::encode($val);
+                }
+            } else {
+                if (is_array($val)) {
+                    $val = implode(' ', $val);
+                }
+            }
+
+            $val = $escapeHtmlAttr($val);
+
+            if ('id' == $key) {
+                $val = $this->normalizeId($val);
+            }
+
+            if (strpos($val, '"') !== false) {
+                $xhtml .= " $key='$val'";
+            } else {
+                $xhtml .= " $key=\"$val\"";
+            }
+        }
+
+        return $xhtml;
 	}
 
 	/**

@@ -32,19 +32,20 @@ class Formgroup extends Void
 	 * View helper entry point:
 	 * Retrieves helper and optionally sets component options to operate on
 	 *
-	 * @param  array|StdClass $options [optional] component options to operate on
+	 * @param  array|StdClass $formoptions [optional] component options to operate on
+	 * @param  string $field [optional] component options to operate on
 	 * @return self
 	 */
-	public function __invoke($options = array()) { // ($form, $field) {
+	public function __invoke($formoptions = array(), $field = null) {
 		parent::__invoke(array());
 		$form = null; 
 		$field = null;
-		if ( !is_array($options) && ($options instanceof \Zend\Form\Form) && (func_num_args() == 2) ) {
-			$form	= $options;
+		if ( !is_array($formoptions) && ($formoptions instanceof \Zend\Form\Form) && (func_num_args() == 2) ) {
+			$form	= $formoptions;
 			$field	= func_get_arg(1);
-		} else if ( isset($options["form"]) && isset($options["field"]) && ($options["form"] instanceof \Zend\Form\Form) ) {
-			$form	= $options["form"];
-			$field	= $options["field"];
+		} else if ( isset($formoptions["form"]) && isset($formoptions["field"]) && ($formoptions["form"] instanceof \Zend\Form\Form) ) {
+			$form	= $formoptions["form"];
+			$field	= $formoptions["field"];
 		} else
 		if ( !($form instanceof \Zend\Form\Form) || empty($field) ) {
 			return "";

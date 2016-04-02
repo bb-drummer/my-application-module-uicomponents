@@ -26,7 +26,7 @@ use \Zend\View\Exception;
  * Helper for recursively rendering 'Bootstrap' compatible multi-level menus
  *
  */
-class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\ServiceManager\ServiceLocatorAwareInterface
+class Menu extends \Zend\View\Helper\Navigation\Menu
 {
 
 	/**
@@ -105,10 +105,6 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 	protected $attributes = array();
 	
 	
-	/**
-     * @var \Zend\ServiceManager\ServiceLocatorInterface
-     * /
-    protected $serviceLocator;
 
 	/**
 	 * View helper entry point:
@@ -126,6 +122,25 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 		return $this;
 	}
 	
+	/**
+	 * Returns the navigation container helper operates on by default
+	 *
+	 * Implements {@link HelperInterface::getContainer()}.
+	 *
+	 * If no container is set, a new container will be instantiated and
+	 * stored in the helper.
+	 *
+	 * @return Navigation\AbstractContainer	navigation container
+	 */
+	public function getContainer()
+	{
+		if (null === $this->container) {
+			$this->container = new \UIComponents\Navigation\Navigation();
+		}
+
+		return $this->container;
+	}
+
 	/**
 	 * Renders helper
 	 *
@@ -262,7 +277,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 			// make sure indentation is correct
 			$depth -= $minDepth;
 			$myIndent = $indent . str_repeat('	', $depth);
-
+			$attributes = $this->getAttributes();
 			if ($depth > $prevDepth) {
 				// start new ul tag
 				$ulClass = '' . 
@@ -276,7 +291,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 				} else {
 					$ulClass = ' class="' . $escaper($ulClass) . '"';
 				}
-				$html .= $myIndent . '<ul' . $ulClass . ' '.$this->htmlAttribs($attributes).'>' . PHP_EOL;
+				$html .= $myIndent . '<ul' . $ulClass . ' '.($depth == 0 ? $this->htmlAttribs($attributes) : '').'>' . PHP_EOL;
 			} elseif ($prevDepth > $depth) {
 				// close li/ul tags until we're at current depth
 				for ($i = $prevDepth; $i > $depth; $i--) {
@@ -345,13 +360,45 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 		// except for "data-" and "aria-" attributes
 		foreach ($attribs as $key => $value) {
 			if ($value === null || (is_string($value) && !strlen($value))) {
-				if ( (strpos($key, "data") == 0) && (strpos($key, "aria") == 0) ) {
+				if ( (strpos($key, "data") === false) && (strpos($key, "aria") === false) ) {
 					unset($attribs[$key]);
 				}
 			}
 		}
 
-		return parent::htmlAttribs($attribs);
+        $xhtml          = '';
+        $escaper        = $this->getView()->plugin('escapehtml');
+        $escapeHtmlAttr = $this->getView()->plugin('escapehtmlattr');
+
+        foreach ((array) $attribs as $key => $val) {
+            $key = $escaper($key);
+
+            if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
+                // Don't escape event attributes; _do_ substitute double quotes with singles
+                if (!is_scalar($val)) {
+                    // non-scalar data should be cast to JSON first
+                    $val = \Zend\Json\Json::encode($val);
+                }
+            } else {
+                if (is_array($val)) {
+                    $val = implode(' ', $val);
+                }
+            }
+
+            $val = $escapeHtmlAttr($val);
+
+            if ('id' == $key) {
+                $val = $this->normalizeId($val);
+            }
+
+            if (strpos($val, '"') !== false) {
+                $xhtml .= " $key='$val'";
+            } else {
+                $xhtml .= " $key=\"$val\"";
+            }
+        }
+
+        return $xhtml;
 	}
 
 	/**
@@ -613,27 +660,6 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 	}
 	
 	/**
-	 * Converts an associative array to a string of tag attributes.
-	 *
-	 * Overloads {@link View\Helper\AbstractHtmlElement::htmlAttribs()}.
-	 *
-	 * @param	array $attribs	an array where each key-value pair is converted
-	 *						 to an attribute name and value
-	 * @return string
-	 */
-	public function htmlAttribs($attribs)
-	{
-		// filter out null values and empty string values
-		foreach ($attribs as $key => $value) {
-			if ($value === null || (is_string($value) && !strlen($value))) {
-				unset($attribs[$key]);
-			}
-		}
-	
-		return parent::htmlAttribs($attribs);
-	}
-	
-	/**
 	 * Translate a message (for label, title, …)
 	 *
 	 * @param	string $message	ID of the message to translate
@@ -750,34 +776,5 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 		}
 		return $this;
 	}
-
-	/**
-     * Set the service locator.
-     *
-     * Used internally to pull named navigation containers to render.
-     *
-     * @param  \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator
-     * @return AbstractHelper
-     * /
-    public function setServiceLocator(\Interop\Container\ContainerInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
-
-    /**
-     * Get the service locator.
-     *
-     * Used internally to pull named navigation containers to render.
-     *
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
-     * /
-    public function getServiceLocator()
-    {
-    	if (null === $this->serviceLocator) {
-    		$this->setServiceLocator();
-    	}
-        return $this->serviceLocator;
-    }
-    */
+	
 }

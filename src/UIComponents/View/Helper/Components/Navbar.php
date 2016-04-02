@@ -15,18 +15,14 @@
 
 namespace UIComponents\View\Helper\Components;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareTrait;
-
 /**
  *
  * Helper for recursively rendering 'Bootstrap' compatible multi-level menus
  * 
  * @see \UIComponents\View\Helper\Navigation\Menu
  */
-class Navbar extends \UIComponents\View\Helper\Navigation\Menu // implements ServiceLocatorAwareInterface
+class Navbar extends \UIComponents\View\Helper\Navigation\Menu
 {
-	//use ServiceLocatorAwareTrait;
 	
 	/**
 	 * View helper entry point:

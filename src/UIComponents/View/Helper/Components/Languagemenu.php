@@ -15,7 +15,6 @@
 
 namespace UIComponents\View\Helper\Components;
 
-//use UIComponents\View\Helper\Components\AbstractHelper as ComponentsAbstractHelper ;
 use Zend\View\HelperPluginManager;
 use Locale;
 
@@ -471,11 +470,11 @@ class Languagemenu extends \UIComponents\View\Helper\AbstractHelper
 
 			$list .= $item;
 		}
-		
+		$attributes = $this->getAttributes();
 		$html  = 
-			'<ul'.(($class) ? sprintf(' class="%s"', $class) : '').'>'.
+			'<ul'.(($class) ? sprintf(' class="%s"', $class) : '').' '.($this->htmlAttribs($attributes)).'>'.
 				'<li'.(($liclass) ? sprintf(' class="%s"', $liclass) : '').'>'.
-					'<a href="" class="'.(($liclass) ? $liclass : '').'-toggle" data-toggle="'.(($liclass) ? $liclass : '').'" role="button" aria-haspopup="true" aria-expanded="false" title="'.Locale::getDisplayName(null).'">'.
+					'<a href="" class="'.(($liclass) ? $liclass.'-toggle' : '').'" data-toggle="'.(($liclass) ? $liclass : '').'" role="button" aria-haspopup="true" aria-expanded="false" title="'.Locale::getDisplayName(null).'">'.
 						'<span class="'.(($iconprefixclass) ? $iconprefixclass : '').Locale::getPrimaryLanguage(null).'"></span> '.
 						''.Locale::getDisplayLanguage(null). // ' - '.Locale::getDefault().' - '.Locale::getPrimaryLanguage(null).''.
 						'<span class="caret"></span>'.

@@ -18,7 +18,6 @@ namespace UIComponents\View\Helper;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\View\Exception;
 use Zend\View\Renderer\RendererInterface as Renderer;
-use Zend\Mvc\Application;
 
 /**
  * Proxy helper for retrieving navigational helpers and forwarding calls
