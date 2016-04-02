@@ -74,12 +74,12 @@ class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
 		if ($this->getNoList()) {
 			$html .= parent::renderStraight($container);
 		} {
-			$html .= $this->renderBoostrapOl($container);
+			$html .= $this->renderOl($container);
 		}
 		return $html; 
 	}
 	
-	public function renderBoostrapOl($container = null)
+	public function renderOl($container = null)
 	{
 		$this->parseContainer($container);
 		if (null === $container) {

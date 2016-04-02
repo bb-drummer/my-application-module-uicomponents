@@ -19,7 +19,7 @@ namespace UIComponents\View\Helper\Components;
 use Zend\View\HelperPluginManager;
 use Locale;
 
-class Languagemenu extends AbstractHelper
+class Languagemenu extends \UIComponents\View\Helper\AbstractHelper
 
 {
 	
