@@ -20,7 +20,7 @@ namespace UIComponents\View\Helper\Bootstrap;
  * render nothing
  *
  */
-class Config extends UIComponents\View\Helper\AbstractHelper 
+class Config extends \UIComponents\View\Helper\AbstractHelper 
 //implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
