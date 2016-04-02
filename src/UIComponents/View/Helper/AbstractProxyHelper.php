@@ -346,7 +346,7 @@ class AbstractProxyHelper extends AbstractHelper
 	 * @param  Components\PluginManager $plugins
 	 * @return Components
 	 */
-	public function setPluginManager(Components\PluginManager $plugins)
+	public function setPluginManager(AbstractPluginManager $plugins)
 	{
 		$renderer = $this->getView();
 		if ($renderer) {
