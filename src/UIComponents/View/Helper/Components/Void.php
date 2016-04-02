@@ -20,8 +20,8 @@ namespace UIComponents\View\Helper\Components;
  * render nothing
  *
  */
-class Void extends AbstractHelper implements 
-	\Zend\ServiceManager\ServiceLocatorAwareInterface
+class Void extends UIComponents\View\Helper\AbstractHelper 
+//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 	
 	/**

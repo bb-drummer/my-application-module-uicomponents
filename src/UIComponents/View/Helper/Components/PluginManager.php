@@ -15,8 +15,7 @@
 
 namespace UIComponents\View\Helper\Components;
 
-use Zend\View\Exception;
-use Zend\View\HelperPluginManager;
+use UIComponents\View\Helper\AbstractPluginManager;
 
 /**
  * Plugin manager implementation for 'Components' helpers
@@ -25,7 +24,7 @@ use Zend\View\HelperPluginManager;
  * Components\HelperInterface. Additionally, it registers a number of default
  * helpers.
  */
-class PluginManager extends HelperPluginManager
+class PluginManager extends AbstractPluginManager
 {
 	/**
 	 * Default set of helpers
@@ -46,8 +45,8 @@ class PluginManager extends HelperPluginManager
 		'button'			=> 'UIComponents\View\Helper\Components\Button', // default, drop-down/up, splitted
 		'buttongroup'		=> 'UIComponents\View\Helper\Components\Buttongroup',
 		'inputgroup'		=> 'UIComponents\View\Helper\Components\Inputgroup',
-		'nav'				=> 'UIComponents\View\Helper\Bootstrap\Navbar', // set 'alias to' or combine with 'Navbars' !
-		'breadcrumbs'		=> 'UIComponents\View\Helper\Bootstrap\Breadcrumbs',
+		'nav'				=> 'UIComponents\View\Helper\Components\Navbar', // set 'alias to' or combine with 'Navbars' !
+		'breadcrumbs'		=> 'UIComponents\View\Helper\Components\Breadcrumbs',
 		'pagination'		=> 'UIComponents\View\Helper\Components\Pagination',
 		'label'				=> 'UIComponents\View\Helper\Components\Label',
 		'badge'				=> 'UIComponents\View\Helper\Components\Badge',
@@ -74,26 +73,4 @@ class PluginManager extends HelperPluginManager
 		'carousel'			=> 'UIComponents\View\Helper\Components\Carousel',
 	];
 
-	/**
-	 * Validate the plugin
-	 *
-	 * Checks that the helper loaded is an instance of AbstractHelper.
-	 *
-	 * @param	mixed $plugin
-	 * @return	void
-	 * @throws	Exception\InvalidArgumentException if invalid
-	 */
-	public function validatePlugin($plugin)
-	{
-		if ($plugin instanceof \Zend\View\Helper\AbstractHelper) {
-			// we're okay
-			return;
-		}
-
-		throw new Exception\InvalidArgumentException(sprintf(
-			'Plugin of type %s is invalid; must implement %s\AbstractHelper',
-			(is_object($plugin) ? get_class($plugin) : gettype($plugin)),
-			__NAMESPACE__
-		));
-	}
 }

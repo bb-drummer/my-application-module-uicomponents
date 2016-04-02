@@ -15,45 +15,36 @@
 
 namespace UIComponents\View\Helper;
 
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\View\Exception;
+use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\Mvc\Application;
+use UIComponents\View\Helper\Bootstrap\Components;
 
 /**
  * Proxy helper for retrieving navigational helpers and forwarding calls
  */
-class Components extends AbstractProxyHelper
+class Utilities extends AbstractProxyHelper
 {
 	/**
 	 * View helper namespace
 	 *
 	 * @var string
 	 */
-	const NS = 'UIComponents\View\Helper\Components';
-
+	const NS = 'UIComponents\View\Helper\Utilities';
 	/**
 	 * Helper entry point
 	 *
 	 * @param  string|AbstractContainer $container container to operate on
-	 * @return Components
+	 * @return Bootstrap
 	 */
-	public function __invoke($options = array())
+	public function __invoke($container = null)
 	{
-		if (isset($options['container']) && null !== $options['container']) {
-			$this->setContainer($options['container']);
+		if (null !== $container) {
+			$this->setContainer($container);
 		}
 
-		return ($this);
-	}
-
-	/**
-	 * Renders helper
-	 *
-	 * @param  AbstractContainer $container
-	 * @return string
-	 * @throws Exception\RuntimeException
-	 */
-	public function render($container = null)
-	{
-		return '';
+		return $this;
 	}
 
 	/**
@@ -62,15 +53,14 @@ class Components extends AbstractProxyHelper
 	 * Lazy-loads an instance of Navigation\HelperLoader if none currently
 	 * registered.
 	 *
-	 * @return Components\PluginManager
+	 * @return Bootstrap\PluginManager
 	 */
 	public function getPluginManager()
 	{
 		if (null === $this->plugins) {
-			$this->setPluginManager(new Components\PluginManager());
+			$this->setPluginManager(new Utilities\PluginManager());
 		}
 
 		return $this->plugins;
 	}
-
 }

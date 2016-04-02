@@ -13,44 +13,35 @@
  * @copyright	copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
  */
 
-namespace UIComponents\View\Helper\Bootstrap;
+namespace UIComponents\View\Helper;
 
 use Zend\View\Exception;
 use Zend\View\HelperPluginManager;
 
 /**
- * Plugin manager implementation for 'Bootstrap' helpers
+ * Plugin manager implementation for 'Components' helpers
  *
  * Enforces that helpers retrieved are instances of
- * Bootstrap\HelperInterface. Additionally, it registers a number of default
+ * Components\HelperInterface. Additionally, it registers a number of default
  * helpers.
  */
-class PluginManager extends HelperPluginManager
+class AbstractPluginManager extends HelperPluginManager
 {
 	/**
 	 * Default set of helpers
 	 *
-	 * @var array
+	 * @var	array
 	 */
-	protected $invokableClasses = [
-		'void'				=> 'UIComponents\View\Helper\Bootstrap\Void',
-		'config'			=> 'UIComponents\View\Helper\Bootstrap\Config',
-		'apptitle'			=> 'UIComponents\View\Helper\Bootstrap\AppTitle',
-		'appfavicon'		=> 'UIComponents\View\Helper\Bootstrap\AppFavicon',
-		'applogo'			=> 'UIComponents\View\Helper\Bootstrap\AppLogo',
-		'components'		=> 'UIComponents\View\Helper\Bootstrap\Components',
-		'navbar'			=> 'UIComponents\View\Helper\Bootstrap\Navbar',
-		'breadcrumbs'		=> 'UIComponents\View\Helper\Bootstrap\Breadcrumbs',
-	];
+	protected $invokableClasses = [ ];
 
 	/**
 	 * Validate the plugin
 	 *
 	 * Checks that the helper loaded is an instance of AbstractHelper.
 	 *
-	 * @param  mixed $plugin
-	 * @return void
-	 * @throws Exception\InvalidArgumentException if invalid
+	 * @param	mixed $plugin
+	 * @return	void
+	 * @throws	Exception\InvalidArgumentException if invalid
 	 */
 	public function validatePlugin($plugin)
 	{

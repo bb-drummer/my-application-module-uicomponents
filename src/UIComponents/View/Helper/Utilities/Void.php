@@ -13,21 +13,17 @@
  * @copyright	copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
  */
 
-namespace UIComponents\View\Helper\Bootstrap;
-
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareTrait;
+namespace UIComponents\View\Helper\Utilities;
 
 /**
  *
- * Helper for recursively rendering 'Bootstrap' compatible multi-level menus
- * 
- * @see \UIComponents\View\Helper\Navigation\Menu
+ * render nothing
+ *
  */
-class Navbar extends \UIComponents\View\Helper\Navigation\Menu // implements ServiceLocatorAwareInterface
+class Void extends UIComponents\View\Helper\AbstractHelper 
+//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
-	//use ServiceLocatorAwareTrait;
-	
+
 	/**
 	 * View helper entry point:
 	 * Retrieves helper and optionally sets container to operate on
@@ -41,8 +37,19 @@ class Navbar extends \UIComponents\View\Helper\Navigation\Menu // implements Ser
 			$this->setContainer($container);
 		}
 
-		return (clone $this);
+		return ($this);
 	}
 
-	
+	/**
+	 * render nothing
+	 * 
+	 * @return string
+	 */
+	public function render($container = null)
+	{
+		$html = '';
+		
+		return $html;
+	}
+
 }

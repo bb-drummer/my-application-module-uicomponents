@@ -22,7 +22,7 @@ namespace UIComponents\View\Helper\Components;
  */
 class Dashboard extends Void
 {
-	protected $tagname = 'div';
+	protected $tagname = 'section';
 	
 	protected $classnames = 'dashboard';
 	

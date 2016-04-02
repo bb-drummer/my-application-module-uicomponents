@@ -13,7 +13,7 @@
  * @copyright	copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
  */
 
-namespace UIComponents\View\Helper\Components;
+namespace UIComponents\View\Helper;
 
 use Zend\Navigation;
 use Zend\Permissions\Acl;

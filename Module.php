@@ -79,25 +79,25 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
 	{
 		return array(
 			'factories' => array(
-				'bootstrap' => function(\Zend\View\HelperPluginManager $oHelperPluginManager) {
+				'utilities' => function(\Zend\View\HelperPluginManager $oHelperPluginManager) {
 					$this->setServiceLocator($oHelperPluginManager->getServiceLocator());
 
 					$acl = \Admin\Module::initACL($oHelperPluginManager->getServiceLocator()); 
 
-					/** @var \UIComponents\View\Helper\Bootstrap $bootstrap */
-					$bootstrap = $oHelperPluginManager->get('UIComponents\View\Helper\Bootstrap');
-					$bootstrap->setAcl($acl);
-					$bootstrap->setServiceLocator($oHelperPluginManager->getServiceLocator());
+					/** @var \UIComponents\View\Helper\Utilities $utilities */
+					$utilities = $oHelperPluginManager->get('UIComponents\View\Helper\Utilities');
+					$utilities->setAcl($acl);
+					$utilities->setServiceLocator($oHelperPluginManager->getServiceLocator());
 					
 					$oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
 					if ( $oAuth->hasIdentity() ) {
 						$oUser = $oAuth->getIdentity();
-						$bootstrap->setRole( $oUser->getAclrole() );
+						$utilities->setRole( $oUser->getAclrole() );
 					} else {
-						$bootstrap->setRole('public');
+						$utilities->setRole('public');
 					}
 					
-					return $bootstrap;
+					return $utilities;
 				},
 				'components' => function(\Zend\View\HelperPluginManager $oHelperPluginManager) {
 					$this->setServiceLocator($oHelperPluginManager->getServiceLocator());
@@ -119,24 +119,24 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
 					
 					return $components;
 				},
-				'toolbar' => function(HelperPluginManager $pm) {
-					$this->setServiceLocator($pm->getServiceLocator());
-					$acl = \Admin\Module::initACL($pm->getServiceLocator());
+				'toolbar' => function(HelperPluginManager $oHelperPluginManager) {
+					$this->setServiceLocator($oHelperPluginManager->getServiceLocator());
+					$acl = \Admin\Module::initACL($oHelperPluginManager->getServiceLocator());
 
-					/** @var \UIComponents\View\Helper\Components\Toolbar $navigation */
-					$navigation = $pm->get('UIComponents\View\Helper\Components\Toolbar');
-					$navigation->setAcl($acl);
-					$navigation->setServiceLocator($oHelperPluginManager->getServiceLocator());
+					/** @var \UIComponents\View\Helper\Components\Toolbar $toolbar */
+					$toolbar = $oHelperPluginManager->get('UIComponents\View\Helper\Components\Toolbar');
+					$toolbar->setAcl($acl);
+					$toolbar->setServiceLocator($oHelperPluginManager->getServiceLocator());
 					
-					$oAuth = $pm->getServiceLocator()->get('zfcuser_auth_service');
+					$oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
 					if ( $oAuth->hasIdentity() ) {
 						$oUser = $oAuth->getIdentity();
-						$navigation->setRole( $oUser->getAclrole() );
+						$toolbar->setRole( $oUser->getAclrole() );
 					} else {
-						$navigation->setRole('public');
+						$toolbar->setRole('public');
 					}
 					
-					return $navigation;
+					return $toolbar;
 				},
 			)
 		);
