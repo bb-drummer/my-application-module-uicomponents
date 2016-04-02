@@ -46,6 +46,7 @@ class PluginManager extends AbstractPluginManager
 		'buttongroup'		=> 'UIComponents\View\Helper\Components\Buttongroup',
 		'inputgroup'		=> 'UIComponents\View\Helper\Components\Inputgroup',
 		'nav'				=> 'UIComponents\View\Helper\Components\Navbar', // set 'alias to' or combine with 'Navbars' !
+		'topbar'			=> 'UIComponents\View\Helper\Components\Navbar', // set 'alias to' or combine with 'Navbars' !
 		'breadcrumbs'		=> 'UIComponents\View\Helper\Components\Breadcrumbs',
 		'pagination'		=> 'UIComponents\View\Helper\Components\Pagination',
 		'label'				=> 'UIComponents\View\Helper\Components\Label',
