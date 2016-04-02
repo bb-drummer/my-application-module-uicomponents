@@ -69,10 +69,10 @@ class Toolbar extends \UIComponents\View\Helper\Navigation\Menu // implements Se
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
      *
-     * @param  AbstractContainer $container [optional] container to operate on
+     * @param  string|AbstractContainer $container [optional] container to operate on
      * @return self
      */
-    public function __invoke($container = null)
+    public function __invoke($container = 'componentnavigationhelper')
     {
         if (null !== $container) {
             $this->setContainer($container);

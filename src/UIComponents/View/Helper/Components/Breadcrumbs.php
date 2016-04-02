@@ -64,11 +64,11 @@ class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
      * Renders breadcrumbs by chaining 'a' elements with the separator
      * registered in the helper
      *
-     * @param    AbstractContainer $container [optional] container to render. Default is
+     * @param    string|AbstractContainer $container [optional] container to render. Default is
      *                                        to render the container registered in the helper.
      * @return string
      */
-    public function renderStraight($container = null)
+    public function renderStraight($container = 'navigation')
     {
         $html = '';
         if ($this->getNoList()) {

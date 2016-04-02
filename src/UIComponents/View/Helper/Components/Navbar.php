@@ -28,10 +28,10 @@ class Navbar extends \UIComponents\View\Helper\Navigation\Menu
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
      *
-     * @param  AbstractContainer $container [optional] container to operate on
+     * @param  string|AbstractContainer $container [optional] container to operate on
      * @return self
      */
-    public function __invoke($container = null)
+    public function __invoke($container = 'navigation')
     {
         if (null !== $container) {
             $this->setContainer($container);
