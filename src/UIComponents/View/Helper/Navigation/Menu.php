@@ -276,7 +276,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 				} else {
 					$ulClass = ' class="' . $escaper($ulClass) . '"';
 				}
-				$html .= $myIndent . '<ul' . $ulClass . '>' . PHP_EOL;
+				$html .= $myIndent . '<ul' . $ulClass . ' '.$this->htmlAttribs($attributes).'>' . PHP_EOL;
 			} elseif ($prevDepth > $depth) {
 				// close li/ul tags until we're at current depth
 				for ($i = $prevDepth; $i > $depth; $i--) {
@@ -328,6 +328,30 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Converts an associative array to a string of tag attributes.
+	 *
+	 * Overloads {@link View\Helper\AbstractHtmlElement::htmlAttribs()}.
+	 *
+	 * @param	array $attribs	an array where each key-value pair is converted
+	 *						 to an attribute name and value
+	 * @return string
+	 */
+	protected function htmlAttribs($attribs)
+	{
+		// filter out null values and empty string values
+		// except for "data-" and "aria-" attributes
+		foreach ($attribs as $key => $value) {
+			if ($value === null || (is_string($value) && !strlen($value))) {
+				if ( (strpos($key, "data") == 0) && (strpos($key, "aria") == 0) ) {
+					unset($attribs[$key]);
+				}
+			}
+		}
+
+		return parent::htmlAttribs($attribs);
 	}
 
 	/**
