@@ -71,29 +71,4 @@ class Void extends \UIComponents\View\Helper\AbstractHelper
         return $component;
     }
     
-    /**
-     * render component
-     * 
-     * @param boolean $output
-     * 
-     * @return string
-     */
-    public function render($output = false)
-    {    
-        try {
-            
-            if ($output) {
-                echo $this->buildComponent();
-            }
-            return $this->buildComponent();
-            
-        } catch (\Exception $e) {
-            
-            $msg = get_class($e) . ': ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-            trigger_error($msg, E_USER_ERROR);
-            return '';
-            
-        }
-    }
-
 }

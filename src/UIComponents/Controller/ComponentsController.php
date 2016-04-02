@@ -15,8 +15,6 @@
 
 namespace UIComponents\Controller;
 
-//use Zend\Json\Json;
-//use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Application\Controller\BaseActionController;
 

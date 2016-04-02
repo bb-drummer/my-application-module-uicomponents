@@ -21,6 +21,8 @@ use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\I18n\Translator\TranslatorInterface as Translator;
 use Zend\I18n\Translator\TranslatorAwareInterface;
+use Zend\Navigation\Page\AbstractPage;
+use Zend\Navigation\AbstractContainer;
 use Zend\Permissions\Acl;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -239,12 +241,31 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
      */
     public function __toString()
     {
+        return $this->render();
+    }
+
+    /**
+     * render component
+     * 
+     * @param boolean $output
+     * 
+     * @return string
+     */
+    public function render($output = false)
+    {    
         try {
-            return $this->render();
+            
+            if ($output) {
+                echo $this->buildComponent();
+            }
+            return $this->buildComponent();
+            
         } catch (\Exception $e) {
-            $msg = get_class($e) . ': ' . $e->getMessage()."\n".$e->getTraceAsString();
+            
+            $msg = get_class($e) . ': ' . $e->getMessage() . "\n" . $e->getTraceAsString();
             trigger_error($msg, E_USER_ERROR);
             return '';
+            
         }
     }
 
@@ -271,7 +292,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
      */
     public function findActive($container, $minDepth = null, $maxDepth = -1)
     {
-        //$this->parseContainer($container);
+    	
         if (!is_int($minDepth)) {
             $minDepth = $this->getMinDepth();
         }
@@ -465,10 +486,14 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
             }
         }
 
-        $xhtml          = '';
-        $escaper        = $this->getView()->plugin('escapehtml');
-        $escapeHtmlAttr = $this->getView()->plugin('escapehtmlattr');
-
+        $xhtml = '';
+        $oView = $this->getView();
+        $escaper        = function ($val) { return $val; };
+        $escapeHtmlAttr = function ($val) { return $val; };
+        if ( ($oView instanceof Zend\View\Renderer\RendererInterface)) {
+            $escaper        = $oView()->plugin('escapehtml');
+            $escapeHtmlAttr = $oView()->plugin('escapehtmlattr');
+        }
         foreach ((array) $attribs as $key => $val) {
             $key = $escaper($key);
 
@@ -597,6 +622,11 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
     
     /**
      * create the component markup
+     * 
+     * @param string $tagname 
+     * @param string $classnames 
+     * @param array $attributes 
+     * @param string|mixed $content 
      * 
      * @return string the component markup
      */

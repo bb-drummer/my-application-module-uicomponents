@@ -61,7 +61,7 @@ return array(
         'abstract_factories' => array(
         ),
         'factories' => array(
-            'toolbarnavigation' => 'UIComponents\Navigation\Service\ToolbarNavigationFactory',
+            'componentnavigationhelper' => 'UIComponents\Navigation\Service\ComponentNavigationHelperFactory',
         ),
         'invokables' => array(
         ),
@@ -82,42 +82,36 @@ return array(
                         'label'      => 'UI components tests',
                         'icon'       => 'cubes',
                         'route'      => 'uicomponentstestpages/default',
-                        //'resource'   => 'mvc:admin',
                         'pages' => array(
                             array(
                                 'label'      => 'panels',
                                 'icon'       => 'desktop',
                                 'route'      => 'uicomponentstestpages/default',
                                 'action'     => 'panels',
-                                //'resource'   => 'mvc:nouser',
                             ),
                             array(
                                 'label'      => 'controls',
-                                'icon'       => 'gamepad', // 'sliders', // 
+                                'icon'       => 'gamepad',
                                 'route'      => 'uicomponentstestpages/default',
                                 'action'     => 'controls',
-                                //'resource'   => 'mvc:nouser',
                             ),
                             array(
                                 'label'      => 'forms',
                                 'icon'       => 'server',
                                 'route'      => 'uicomponentstestpages/default',
                                 'action'     => 'forms',
-                                //'resource'   => 'mvc:nouser',
                             ),
                             array(
                                 'label'      => 'tables',
                                 'icon'       => 'table',
                                 'route'      => 'uicomponentstestpages/default',
                                 'action'     => 'tables',
-                                //'resource'   => 'mvc:nouser',
                             ),
                             array(
                                 'label'      => 'widgets',
                                 'icon'       => 'pie-chart',
                                 'route'      => 'uicomponentstestpages/default',
                                 'action'     => 'widgets',
-                                //'resource'   => 'mvc:nouser',
                             ),
                         ),
                     ),

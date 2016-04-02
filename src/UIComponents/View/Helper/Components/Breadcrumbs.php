@@ -131,33 +131,6 @@ class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
     }
     
     /**
-     * Returns an HTML string containing an 'a' element for the given page
-     *
-     * @param  AbstractPage $page  page to generate HTML for
-     * @return string              HTML string (<a href="…">Label</a>)
-     */
-    public function htmlify(AbstractPage $page)
-    {
-        $label = $this->translate($page->getLabel()); //, $page->getTextDomain());
-        $title = $this->translate($page->getTitle()); //, $page->getTextDomain());
-
-        // get attribs for anchor element
-        $attribs = [
-            'id'     => $page->getId(),
-            'title'  => $title,
-            'class'  => $page->getClass(),
-            'href'   => $page->getHref(),
-            'target' => $page->getTarget()
-        ];
-
-        /** @var \Zend\View\Helper\EscapeHtml $escaper */
-        $escaper = $this->view->plugin('escapeHtml');
-        $label   = $escaper($label);
-
-        return '<a' . $this->htmlAttribs($attribs) . '>' . $label . '</a>';
-    }
-
-    /**
      * @return the $olClass
      */
     public function getOlClass() {

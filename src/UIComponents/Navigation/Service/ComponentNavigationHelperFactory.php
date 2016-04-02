@@ -1,7 +1,7 @@
 <?php
 namespace UIComponents\Navigation\Service;
 
-class ToolbarNavigationFactory extends \Zend\Navigation\Service\ConstructedNavigationFactory 
+class ComponentNavigationHelperFactory extends \Zend\Navigation\Service\ConstructedNavigationFactory 
 {
     /**
      * @var string|\Zend\Config\Config|array
@@ -16,7 +16,7 @@ class ToolbarNavigationFactory extends \Zend\Navigation\Service\ConstructedNavig
 
     public function getName()
     {
-        return 'toolbarnavigation';
+        return 'componentnavigationhelper';
     }
 
 }
