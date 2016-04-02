@@ -22,8 +22,9 @@ use Zend\View;
 /**
  * Helper for printing breadcrumbs
  */
-class Breadcrumbs extends \UIComponents\View\Helper\Navigation\Menu
-// \Zend\View\Helper\Navigation\Breadcrumbs
+class Breadcrumbs extends 
+// \UIComponents\View\Helper\Navigation\Menu
+ \Zend\View\Helper\Navigation\Breadcrumbs
 {
 	
 	/**
@@ -105,7 +106,7 @@ class Breadcrumbs extends \UIComponents\View\Helper\Navigation\Menu
 			$html = '<li class="active">' . $this->htmlify($active) . '</li>' . PHP_EOL;
 		} else {
 			$html	= '<li class="active">' . $escaper(
-				$this->translate($active->getLabel(), $active->getTextDomain())
+				$this->translate($active->getLabel()) //, $active->getTextDomain())
 			) . '</li>' . PHP_EOL;
 		}
 
@@ -131,6 +132,33 @@ class Breadcrumbs extends \UIComponents\View\Helper\Navigation\Menu
 		return strlen($html) ? $listHtmlOpen . $this->getIndent() . $html . $listHtmlClose : '';
 	}
 	
+    /**
+     * Returns an HTML string containing an 'a' element for the given page
+     *
+     * @param  AbstractPage $page  page to generate HTML for
+     * @return string              HTML string (<a href="…">Label</a>)
+     */
+    public function htmlify(AbstractPage $page)
+    {
+        $label = $this->translate($page->getLabel()); //, $page->getTextDomain());
+        $title = $this->translate($page->getTitle()); //, $page->getTextDomain());
+
+        // get attribs for anchor element
+        $attribs = [
+            'id'     => $page->getId(),
+            'title'  => $title,
+            'class'  => $page->getClass(),
+            'href'   => $page->getHref(),
+            'target' => $page->getTarget()
+        ];
+
+        /** @var \Zend\View\Helper\EscapeHtml $escaper */
+        $escaper = $this->view->plugin('escapeHtml');
+        $label   = $escaper($label);
+
+        return '<a' . $this->htmlAttribs($attribs) . '>' . $label . '</a>';
+    }
+
 	/**
 	 * @return the $olClass
 	 */
