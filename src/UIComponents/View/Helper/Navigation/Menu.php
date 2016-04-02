@@ -86,7 +86,26 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 	 */
 	protected $htmlifyPartial = null;
 
-    /**
+	//
+	// component related vars/properties/providers/services...
+	//
+	
+	/**
+	 * component's class-names
+	 *
+	 * @var string
+	 */
+	protected $classnames = '';
+	
+	/**
+	 * component's attributes
+	 *
+	 * @var array
+	 */
+	protected $attributes = array();
+	
+	
+	/**
      * @var \Zend\ServiceManager\ServiceLocatorInterface
      * /
     protected $serviceLocator;
@@ -602,7 +621,113 @@ class Menu extends \Zend\View\Helper\Navigation\Menu // implements \Zend\Service
 		return parent::translate($message, $textDomain);
 	}
 	
-    /**
+	/**
+	 * set class names
+	 * 
+	 * @param string $classnames
+	 */
+	public function setClassnames($classnames) {
+		if ( null !== $classnames ) {
+			$this->classnames = $classnames;
+		}
+		return $this;
+	}
+
+	/**
+	 * check if classname occurs in classnames
+	 * 
+	 * @param string $classname
+	 * @return boolean 
+	 */
+	public function hasClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			return in_array($classname, $classes);
+		}
+		return (false);
+	}
+
+	/**
+	 * add classname to classnames
+	 * 
+	 * @param string $classname
+	 */
+	public function addClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			if (!in_array($classname, $classes)) {
+				$classes[] = $classname;
+			}
+			$this->setClassnames(implode(" ", $classes));
+		}
+		return $this;
+	}
+
+	/**
+	 * add classname to classnames
+	 * 
+	 * @param string $classname
+	 */
+	public function removeClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname) && $this->hasClass($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			foreach ($classes as $idx => $current_class) {
+				if ($classname == $current_class) {
+					unset($classes[$idx]);
+				}
+			}
+		}
+		return $this;
+	}
+	
+	/**
+	 * get a single HTML atrributes
+	 * 
+	 * @param string $name the attribute to get
+	 * @return the $attribute 
+	 */
+	public function getAttribute($name) {
+		return ( isset($this->attributes[$name]) ? $this->attributes[$name] : null );
+	}
+
+	/**
+	 * set a single HTML attribute
+	 * 
+	 * @param string $attribute 
+	 * @param mixed $value
+	 */
+	public function setAttribute($attribute, $value = "") {
+		if ( null !== $attribute ) {
+			$this->attributes[$attribute] = $value;
+		}
+		return $this;
+	}
+
+	/**
+	 * get all attributes
+	 * 
+	 * @return the $attributes
+	 */
+	public function getAttributes() {
+		return $this->attributes;
+	}
+
+	/**
+	 * set attributes
+	 * 
+	 * @param array $attributes
+	 */
+	public function setAttributes($attributes) {
+		if ( is_array($attributes) ) {
+			$this->attributes = array_merge_recursive($this->attributes, $attributes);
+		}
+		return $this;
+	}
+
+	/**
      * Set the service locator.
      *
      * Used internally to pull named navigation containers to render.

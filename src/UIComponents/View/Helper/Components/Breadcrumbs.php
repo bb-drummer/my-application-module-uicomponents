@@ -22,9 +22,7 @@ use Zend\View;
 /**
  * Helper for printing breadcrumbs
  */
-class Breadcrumbs extends 
-// \UIComponents\View\Helper\Navigation\Menu
- \Zend\View\Helper\Navigation\Breadcrumbs
+class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
 {
 	
 	/**

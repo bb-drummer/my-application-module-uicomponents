@@ -1151,6 +1151,56 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
 	}
 
 	/**
+	 * check if classname occurs in classnames
+	 * 
+	 * @param string $classname
+	 * @return boolean 
+	 */
+	public function hasClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			return in_array($classname, $classes);
+		}
+		return (false);
+	}
+
+	/**
+	 * add classname to classnames
+	 * 
+	 * @param string $classname
+	 */
+	public function addClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			if (!in_array($classname, $classes)) {
+				$classes[] = $classname;
+			}
+			$this->setClassnames(implode(" ", $classes));
+		}
+		return $this;
+	}
+
+	/**
+	 * add classname to classnames
+	 * 
+	 * @param string $classname
+	 */
+	public function removeClass ($classname) {
+		$classname = trim($classname);
+		if (!empty($classname) && $this->hasClass($classname)) {
+			$classes = explode(" ", $this->getClassnames());
+			foreach ($classes as $idx => $current_class) {
+				if ($classname == $current_class) {
+					unset($classes[$idx]);
+				}
+			}
+		}
+		return $this;
+	}
+	
+	/**
 	 * get a single HTML atrributes
 	 * 
 	 * @param string $name the attribute to get
@@ -1273,56 +1323,6 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
 	 */
 	public function setDOMDoc(\DOMDocument $_DOMDoc) {
 		$this->_DOMDoc = $_DOMDoc;
-		return $this;
-	}
-	
-	/**
-	 * check if classname occurs in classnames
-	 * 
-	 * @param string $classname
-	 * @return boolean 
-	 */
-	public function hasClass ($classname) {
-		$classname = trim($classname);
-		if (!empty($classname)) {
-			$classes = explode(" ", $this->getClassnames());
-			return in_array($classname, $classes);
-		}
-		return (false);
-	}
-
-	/**
-	 * add classname to classnames
-	 * 
-	 * @param string $classname
-	 */
-	public function addClass ($classname) {
-		$classname = trim($classname);
-		if (!empty($classname)) {
-			$classes = explode(" ", $this->getClassnames());
-			if (!in_array($classname, $classes)) {
-				$classes[] = $classname;
-			}
-			$this->setClassnames(implode(" ", $classes));
-		}
-		return $this;
-	}
-
-	/**
-	 * add classname to classnames
-	 * 
-	 * @param string $classname
-	 */
-	public function removeClass ($classname) {
-		$classname = trim($classname);
-		if (!empty($classname) && $this->hasClass($classname)) {
-			$classes = explode(" ", $this->getClassnames());
-			foreach ($classes as $idx => $current_class) {
-				if ($classname == $current_class) {
-					unset($classes[$idx]);
-				}
-			}
-		}
 		return $this;
 	}
 	
