@@ -503,7 +503,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
             'page' => $page,
             'escapeLabel' => $escapeLabel,
             'addClassToListItem' => $addClassToListItem,
-            'menu' => $this,
+            'menu' => (clone $this),
             
         ];
     
