@@ -354,7 +354,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
      *                         to an attribute name and value
      * @return string
      */
-    protected function htmlAttribs($attribs)
+    public function htmlAttribs($attribs)
     {
         // filter out null values and empty string values
         // except for "data-" and "aria-" attributes
