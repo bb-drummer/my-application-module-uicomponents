@@ -61,6 +61,21 @@ class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
     protected $headerClass = 'header';
 
     /**
+     * Helper entry point
+     *
+     * @param  string|AbstractContainer $container container to operate on
+     * @return Breadcrumbs
+     */
+    public function __invoke($container = 'navigation')
+    {
+        if (null !== $container) {
+            $this->setContainer($container);
+        }
+
+        return (clone $this);
+    }
+
+    /**
      * Renders breadcrumbs by chaining 'a' elements with the separator
      * registered in the helper
      *
@@ -79,7 +94,7 @@ class Breadcrumbs extends \Zend\View\Helper\Navigation\Breadcrumbs
         return $html; 
     }
     
-    public function renderOl($container = null)
+    public function renderOl($container = 'navigation')
     {
         $this->parseContainer($container);
         if (null === $container) {
