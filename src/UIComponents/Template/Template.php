@@ -1,7 +1,7 @@
 <?php
 /**
  * BB's Zend Framework 2 Components
- *
+ * 
  * UI Components
  *
  * @package     [MyApplication]
@@ -12,28 +12,27 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
-namespace UIComponents\Navigation\Service;
+
+namespace UIComponents\Template;
 
 /**
- * components' navigation helper object/service factory
+ * light template mechanism
  *
  */
-class ComponentNavigationHelperFactory extends \Zend\Navigation\Service\ConstructedNavigationFactory 
+class Template extends TemplateAbstract
 {
+
     /**
-     * @var string|\Zend\Config\Config|array
+     * Constructor function
+     * 
+     * @param array $tags
+     * @param \Zend\I18n\Translator\TranslatorInterface $translator
+	 * @return \UIComponents\Template\TemplateAbstract
      */
-    protected $config;
-
-    
-    public function __construct($config = array())
-    {
-        parent::__construct($config);
-    }
-
-    public function getName()
-    {
-        return 'componentnavigationhelper';
-    }
-
-}
+    public function __construct ($tags = false, $translator = null)
+	{
+		return parent::__construct($tags, $translator);
+	} 
+	
+} 
+?>

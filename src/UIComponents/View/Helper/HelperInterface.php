@@ -4,25 +4,25 @@
  * 
  * UI Components
  *
- * @package        [MyApplication]
- * @package        BB's Zend Framework 2 Components
- * @package        UI Components
- * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @package     [MyApplication]
+ * @subpackage  BB's Zend Framework 2 Components
+ * @subpackage  UI Components
+ * @author      Björn Bartels <coding@bjoernbartels.earth>
  * @link        https://gitlab.bjoernbartels.earth/groups/zf2
- * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
 namespace UIComponents\View\Helper;
 
 use Zend\Navigation;
 use Zend\Permissions\Acl;
-use Zend\View\Helper\HelperInterface as BaseHelperInterface;
+use Zend\View\Helper\HelperInterface as ZendViewHelperHelperInterface;
 
 /**
  * Interface for navigational helpers
  */
-interface HelperInterface extends BaseHelperInterface
+interface HelperInterface extends ZendViewHelperHelperInterface
 {
     /**
      * Magic overload: Should proxy to {@link render()}.

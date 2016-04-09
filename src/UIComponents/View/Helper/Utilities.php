@@ -4,22 +4,16 @@
  * 
  * UI Components
  *
- * @package        [MyApplication]
- * @package        BB's Zend Framework 2 Components
- * @package        UI Components
- * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @package     [MyApplication]
+ * @subpackage  BB's Zend Framework 2 Components
+ * @subpackage  UI Components
+ * @author      Björn Bartels <coding@bjoernbartels.earth>
  * @link        https://gitlab.bjoernbartels.earth/groups/zf2
- * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
 namespace UIComponents\View\Helper;
-
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\View\Exception;
-use Zend\View\Renderer\RendererInterface as Renderer;
-use Zend\Mvc\Application;
-use UIComponents\View\Helper\Bootstrap\Components;
 
 /**
  * Proxy helper for retrieving navigational helpers and forwarding calls

@@ -1,10 +1,16 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * BB's Zend Framework 2 Components
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * UI Components
+ *
+ * @package     [MyApplication]
+ * @subpackage  BB's Zend Framework 2 Components
+ * @subpackage  UI Components
+ * @author      Björn Bartels <coding@bjoernbartels.earth>
+ * @link        https://gitlab.bjoernbartels.earth/groups/zf2
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
 namespace UIComponents\Navigation;
@@ -12,7 +18,7 @@ namespace UIComponents\Navigation;
 use Zend\Navigation\AbstractContainer as ZendNavigationAbstractContainer;
 
 /**
- * A simple container class for {@link Zend\Navigation\Page} pages
+ * components' container class for {@link Zend\Navigation\Page} pages
  */
 class Navigation extends ZendNavigationAbstractContainer
 {

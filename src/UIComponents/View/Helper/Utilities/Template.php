@@ -1,7 +1,7 @@
 <?php
 /**
  * BB's Zend Framework 2 Components
- *
+ * 
  * UI Components
  *
  * @package     [MyApplication]
@@ -12,28 +12,28 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
-namespace UIComponents\Navigation\Service;
+
+namespace UIComponents\View\Helper\Utilities;
+
+use \UIComponents\Template\Template;
 
 /**
- * components' navigation helper object/service factory
+ *
+ * generates a template object to use in view script
  *
  */
-class ComponentNavigationHelperFactory extends \Zend\Navigation\Service\ConstructedNavigationFactory 
+class Template extends \UIComponents\View\Helper\AbstractHelper 
 {
+
     /**
-     * @var string|\Zend\Config\Config|array
+     * View helper entry point:
+     * Retrieves a new template object
+     *
+     * @return \UIComponents\Template\Template
      */
-    protected $config;
-
+    public function __invoke()
+    {
+        return new Template();
+    }
     
-    public function __construct($config = array())
-    {
-        parent::__construct($config);
-    }
-
-    public function getName()
-    {
-        return 'componentnavigationhelper';
-    }
-
 }

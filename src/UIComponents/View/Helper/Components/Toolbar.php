@@ -4,21 +4,19 @@
  * 
  * UI Components
  *
- * @package        [MyApplication]
- * @package        BB's Zend Framework 2 Components
- * @package        UI Components
- * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @package     [MyApplication]
+ * @subpackage  BB's Zend Framework 2 Components
+ * @subpackage  UI Components
+ * @author      Björn Bartels <coding@bjoernbartels.earth>
  * @link        https://gitlab.bjoernbartels.earth/groups/zf2
- * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
 namespace UIComponents\View\Helper\Components;
 
 use \RecursiveIteratorIterator;
 use Zend\Navigation\AbstractContainer;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareTrait;
 
 /**
  *
@@ -26,9 +24,8 @@ use Zend\ServiceManager\ServiceLocatorAwareTrait;
  * 
  * @see \UIComponents\View\Helper\Navigation\Menu
  */
-class Toolbar extends \UIComponents\View\Helper\Navigation\Menu // implements ServiceLocatorAwareInterface
+class Toolbar extends \UIComponents\View\Helper\Navigation\Menu
 {
-    //use ServiceLocatorAwareTrait;
     
     /**
      * component's tag-name

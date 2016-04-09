@@ -4,13 +4,13 @@
  * 
  * UI Components
  *
- * @package        [MyApplication]
- * @package        BB's Zend Framework 2 Components
- * @package        UI Components
- * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @package     [MyApplication]
+ * @subpackage  BB's Zend Framework 2 Components
+ * @subpackage  UI Components
+ * @author      Björn Bartels <coding@bjoernbartels.earth>
  * @link        https://gitlab.bjoernbartels.earth/groups/zf2
- * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
 namespace UIComponents\View\Helper\Utilities;
@@ -32,11 +32,15 @@ class PluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = [
-        'void'                => 'UIComponents\View\Helper\Utilities\Void',
-        'config'            => 'UIComponents\View\Helper\Utilities\Config',
-        'apptitle'            => 'UIComponents\View\Helper\Utilities\AppTitle',
-        'appfavicon'        => 'UIComponents\View\Helper\Utilities\AppFavicon',
-        'applogo'            => 'UIComponents\View\Helper\Utilities\AppLogo',
+        'void'          => 'UIComponents\View\Helper\Utilities\Void',
+    		
+        'config'        => 'UIComponents\View\Helper\Utilities\Config',
+    		
+        'apptitle'      => 'UIComponents\View\Helper\Utilities\AppTitle',
+        'appfavicon'    => 'UIComponents\View\Helper\Utilities\AppFavicon',
+        'applogo'       => 'UIComponents\View\Helper\Utilities\AppLogo',
+
+    	'framework'     => 'UIComponents\View\Helper\Utilities\Framework',
     ];
     
 }
