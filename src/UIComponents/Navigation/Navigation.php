@@ -30,8 +30,8 @@ class Navigation extends ZendNavigationAbstractContainer
      */
     public function __construct($pages = null)
     {
-        if ($pages && (!is_array($pages) && !$pages instanceof Traversable)) {
-            throw new Exception\InvalidArgumentException(
+        if ($pages && (!is_array($pages) && !$pages instanceof \Traversable)) {
+            throw new \InvalidArgumentException(
                 'Invalid argument: $pages must be an array, an '
                 . 'instance of Traversable, or null'
             );

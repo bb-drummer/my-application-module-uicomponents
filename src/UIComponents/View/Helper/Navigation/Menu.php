@@ -18,7 +18,6 @@ namespace UIComponents\View\Helper\Navigation;
 use \RecursiveIteratorIterator;
 use \Zend\Navigation\AbstractContainer;
 use \Zend\Navigation\Page\AbstractPage;
-use \Zend\ServiceManager\ServiceLocatorInterface;
 use \Zend\View\Exception;
 
 /**
@@ -28,6 +27,8 @@ use \Zend\View\Exception;
  */
 class Menu extends \Zend\View\Helper\Navigation\Menu
 {
+	use \UIComponents\View\Helper\Traits\ComponentClassnamesTrait;
+	use \UIComponents\View\Helper\Traits\ComponentAttributesTrait;
 
     /**
      * default CSS class to use for li elements
@@ -85,24 +86,6 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
      * @var string|array
      */
     protected $htmlifyPartial = null;
-
-    //
-    // component related vars/properties/providers/services...
-    //
-    
-    /**
-     * component's class-names
-     *
-     * @var string
-     */
-    protected $classnames = '';
-    
-    /**
-     * component's attributes
-     *
-     * @var array
-     */
-    protected $attributes = array();
     
     
 
@@ -346,62 +329,6 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
     }
 
     /**
-     * Converts an associative array to a string of tag attributes.
-     *
-     * Overloads {@link View\Helper\AbstractHtmlElement::htmlAttribs()}.
-     *
-     * @param    array $attribs    an array where each key-value pair is converted
-     *                         to an attribute name and value
-     * @return string
-     */
-    public function htmlAttribs($attribs)
-    {
-        // filter out null values and empty string values
-        // except for "data-" and "aria-" attributes
-        foreach ($attribs as $key => $value) {
-            if ($value === null || (is_string($value) && !strlen($value))) {
-                if ( (strpos($key, "data") === false) && (strpos($key, "aria") === false) ) {
-                    unset($attribs[$key]);
-                }
-            }
-        }
-
-        $xhtml          = '';
-        $escaper        = $this->getView()->plugin('escapehtml');
-        $escapeHtmlAttr = $this->getView()->plugin('escapehtmlattr');
-
-        foreach ((array) $attribs as $key => $val) {
-            $key = $escaper($key);
-
-            if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
-                // Don't escape event attributes; _do_ substitute double quotes with singles
-                if (!is_scalar($val)) {
-                    // non-scalar data should be cast to JSON first
-                    $val = \Zend\Json\Json::encode($val);
-                }
-            } else {
-                if (is_array($val)) {
-                    $val = implode(' ', $val);
-                }
-            }
-
-            $val = $escapeHtmlAttr($val);
-
-            if ('id' == $key) {
-                $val = $this->normalizeId($val);
-            }
-
-            if (strpos($val, '"') !== false) {
-                $xhtml .= " $key='$val'";
-            } else {
-                $xhtml .= " $key=\"$val\"";
-            }
-        }
-
-        return $xhtml;
-    }
-
-    /**
      * Finds the deepest active page in the given container
      *
      * @param  Navigation\AbstractContainer $container  container to search
@@ -503,9 +430,6 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
      * as-is, and will be available in the partial script as 'container', e.g.
      * <code>echo 'Number of pages: ', count($this->container);</code>.
      *
-     * @param    Page     $container [optional] container to pass to view
-     *                                    script. Default is to use the container
-     *                                    registered in the helper.
      * @param    string|array    $partial    [optional] partial view script to use.
      *                                    Default is to use the partial
      *                                    registered in the helper. If an array
@@ -700,110 +624,5 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
         return parent::translate($message, $textDomain);
     }
     
-    /**
-     * set class names
-     * 
-     * @param string $classnames
-     */
-    public function setClassnames($classnames) {
-        if ( null !== $classnames ) {
-            $this->classnames = $classnames;
-        }
-        return $this;
-    }
 
-    /**
-     * check if classname occurs in classnames
-     * 
-     * @param string $classname
-     * @return boolean 
-     */
-    public function hasClass ($classname) {
-        $classname = trim($classname);
-        if (!empty($classname)) {
-            $classes = explode(" ", $this->getClassnames());
-            return in_array($classname, $classes);
-        }
-        return (false);
-    }
-
-    /**
-     * add classname to classnames
-     * 
-     * @param string $classname
-     */
-    public function addClass ($classname) {
-        $classname = trim($classname);
-        if (!empty($classname)) {
-            $classes = explode(" ", $this->getClassnames());
-            if (!in_array($classname, $classes)) {
-                $classes[] = $classname;
-            }
-            $this->setClassnames(implode(" ", $classes));
-        }
-        return $this;
-    }
-
-    /**
-     * add classname to classnames
-     * 
-     * @param string $classname
-     */
-    public function removeClass ($classname) {
-        $classname = trim($classname);
-        if (!empty($classname) && $this->hasClass($classname)) {
-            $classes = explode(" ", $this->getClassnames());
-            foreach ($classes as $idx => $current_class) {
-                if ($classname == $current_class) {
-                    unset($classes[$idx]);
-                }
-            }
-        }
-        return $this;
-    }
-    
-    /**
-     * get a single HTML atrributes
-     * 
-     * @param string $name the attribute to get
-     * @return the $attribute 
-     */
-    public function getAttribute($name) {
-        return ( isset($this->attributes[$name]) ? $this->attributes[$name] : null );
-    }
-
-    /**
-     * set a single HTML attribute
-     * 
-     * @param string $attribute 
-     * @param mixed $value
-     */
-    public function setAttribute($attribute, $value = "") {
-        if ( null !== $attribute ) {
-            $this->attributes[$attribute] = $value;
-        }
-        return $this;
-    }
-
-    /**
-     * get all attributes
-     * 
-     * @return the $attributes
-     */
-    public function getAttributes() {
-        return $this->attributes;
-    }
-
-    /**
-     * set attributes
-     * 
-     * @param array $attributes
-     */
-    public function setAttributes($attributes) {
-        if ( is_array($attributes) ) {
-            $this->attributes = array_merge_recursive($this->attributes, $attributes);
-        }
-        return $this;
-    }
-    
 }

@@ -42,26 +42,12 @@ class Toolbar extends \UIComponents\View\Helper\Navigation\Menu
     protected $classnames = 'toolbar toolbar-default callout small';
     
     /**
-     * component's attributes
-     *
-     * @var array
-     */
-    protected $attributes = array();
-    
-    /**
      * component's size attributes
      *
      * @var string|array
      */
     protected $size = '';
     
-    /**
-     * AbstractContainer to operate on by default
-     *
-     * @var Navigation\AbstractContainer
-     */
-    protected $container;
-
     /**
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on

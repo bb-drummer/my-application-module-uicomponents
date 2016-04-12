@@ -41,6 +41,7 @@ class PluginManager extends AbstractPluginManager
         'applogo'       => 'UIComponents\View\Helper\Utilities\AppLogo',
 
     	'framework'     => 'UIComponents\View\Helper\Utilities\Framework',
+    	'template'      => 'UIComponents\View\Helper\Utilities\Framework',
     ];
     
 }

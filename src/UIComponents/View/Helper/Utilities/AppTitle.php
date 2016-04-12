@@ -21,15 +21,14 @@ namespace UIComponents\View\Helper\Utilities;
  *
  */
 class AppTitle extends \UIComponents\View\Helper\AbstractHelper 
-//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
     /**
      * View helper entry point:
-     * Retrieves helper and optionally sets container to operate on
+     * Retrieves application's title string
      *
-     * @param  AbstractContainer $container [optional] container to operate on
-     * @return self
+     * @param  boolean $short [optional] application's title string (short version)
+     * @return string
      */
     public function __invoke($short = false)
     {
@@ -37,7 +36,7 @@ class AppTitle extends \UIComponents\View\Helper\AbstractHelper
     }
 
     /**
-     * render nothing
+     * return application's title string
      * 
      * @return string
      */

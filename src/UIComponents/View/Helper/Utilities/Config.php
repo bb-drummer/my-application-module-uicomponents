@@ -21,7 +21,6 @@ namespace UIComponents\View\Helper\Utilities;
  *
  */
 class Config extends \UIComponents\View\Helper\AbstractHelper 
-//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
     /**

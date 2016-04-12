@@ -21,15 +21,13 @@ namespace UIComponents\View\Helper\Utilities;
  *
  */
 class AppLogo extends \UIComponents\View\Helper\AbstractHelper 
-//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
 
     /**
      * View helper entry point:
-     * Retrieves helper and optionally sets container to operate on
+     * Retrieves application's logo image path string
      *
-     * @param  AbstractContainer $container [optional] container to operate on
-     * @return self
+     * @return string
      */
     public function __invoke()
     {
@@ -37,7 +35,7 @@ class AppLogo extends \UIComponents\View\Helper\AbstractHelper
     }
 
     /**
-     * render nothing
+     * render application's logo image path string
      * 
      * @return string
      */

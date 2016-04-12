@@ -188,7 +188,6 @@ class Table extends Void
 			$this->getTemplate()->next();
 		
 		}
-		return $aHTML;
 	}
 	
 	/**

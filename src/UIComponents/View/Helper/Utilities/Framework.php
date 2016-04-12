@@ -23,7 +23,6 @@ use \Zend\View\Exception\InvalidArgumentException;
  *
  */
 class Framework extends \UIComponents\View\Helper\AbstractHelper 
-//implements \Zend\ServiceManager\ServiceLocatorAwareInterface
 {
     
     const NS = "\UIComponents\Framework";

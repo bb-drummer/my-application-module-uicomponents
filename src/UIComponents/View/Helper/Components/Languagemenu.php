@@ -436,7 +436,7 @@ class Languagemenu extends \UIComponents\View\Helper\AbstractHelper
     public function buildComponent()
     {    
         if (!($detector = $this->getDetector())) {
-            throw new RuntimeException('To assemble an url, a detector is required');
+            throw new \RuntimeException('To assemble an url, a detector is required');
         }
 
         $class = $this->getUlClass();
