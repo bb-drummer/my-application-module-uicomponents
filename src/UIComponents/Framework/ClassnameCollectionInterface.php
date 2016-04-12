@@ -22,35 +22,36 @@ namespace UIComponents\Framework;
 interface ClassnameCollectionInterface {
 	
 	/** @var  string  $framework  framework names, these classnames are related to */
-	public $framework = "";
+	public $framework;
 	
 	/** @var  string  $version  framework version, these classnames are related to */
-	public $version = "0.0";
+	public $version;
 	
 	/** @var  array  $size  generic sizes */
-	public $size = array();
+	public $size;
 	
 	/** @var  array  $column  generic column classname */
-	public $column = "";
+	public $column;
+	
 	/** @var  array  $columnsize  column sizes classnames*/
-	public $columnsize = array();
+	public $columnsize;
 	
 	/** @var  array  $status  status related classnames */
-	public $status = array();
+	public $status;
 	
 	/** @var  array  $panel  panel related classnames */
-	public $panel = array();
+	public $panel;
 	
 	/** @var  array  $control  control related classnames */
-	public $control = array();
+	public $control;
 	
 	/** @var  array  $form  form generation related classnames */
-	public $form = array();
+	public $form;
 	
 	/** @var  array  $table  table related classnames */
-	public $table = array();
+	public $table;
 	
 	/** @var  array  $widget  widgets' classnames */
-	public $widget = array();
+	public $widget;
 	
 }
