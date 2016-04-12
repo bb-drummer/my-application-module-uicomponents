@@ -22,13 +22,13 @@ namespace UIComponents\Framework;
 class Bootstrap3 extends ClassnameCollectionAbstract {
 	
 	/** @var  string  $framework  framework names, these classnames are related to */
-	public static $framework = "Bootstrap";
+	public $framework = "Bootstrap";
 	
 	/** @var  string  $version  framework version, these classnames are related to */
-	public static $version = "3.3.0";
+	public $version = "3.3.0";
 	
 	/** @var  array  $size  generic sizes */
-    public static $size = array(
+    public $size = array(
         "xs"    => "xs",
         "s"     => "s",
         "m"     => "m",
@@ -37,9 +37,9 @@ class Bootstrap3 extends ClassnameCollectionAbstract {
     );
     
 	/** @var  array  $column  generic column classname */
-    public static $column = "columns";
+    public $column = "columns";
 	/** @var  array  $columnsize  column sizes classnames*/
-    public static $columnsize = array(
+    public $columnsize = array(
         "xs"    => "col-xs-",
         "s"     => "col-s-",
         "m"     => "col-m-",
@@ -48,7 +48,7 @@ class Bootstrap3 extends ClassnameCollectionAbstract {
     );
     
 	/** @var  array  $status  status related classnames */
-    public static $status = array(
+    public $status = array(
         "default"    => "default",
         "info"       => "info",
         "success"    => "success",
@@ -58,7 +58,7 @@ class Bootstrap3 extends ClassnameCollectionAbstract {
     );
     
 	/** @var  array  $panel  panel related classnames */
-    public static $panel = array(
+    public $panel = array(
         "prefix"     => "panel-",
         "wrapper"    => "panel",
         "header"     => "panel-header",
@@ -67,7 +67,7 @@ class Bootstrap3 extends ClassnameCollectionAbstract {
     );
     
 	/** @var  array  $control  control related classnames */
-    public static $control = array(
+    public $control = array(
         "button" => array(
             "prefix"    => "btn-",
             "button"    => "btn",
@@ -78,18 +78,18 @@ class Bootstrap3 extends ClassnameCollectionAbstract {
     );
     
 	/** @var  array  $form  form generation related classnames */
-    public static $form = array(
+    public $form = array(
         "formgroup" => array(
             "wrapper"    => "form-group",
         ),
     );
     
 	/** @var  array  $table  table related classnames */
-    public static $table = array(
+    public $table = array(
     );
     
 	/** @var  array  $widget  widgets' classnames */
-    public static $widget = array(
+    public $widget = array(
         "navigation" => array(
             "wrapper" => "navbar navbar-inverse",
             "main" => array(
