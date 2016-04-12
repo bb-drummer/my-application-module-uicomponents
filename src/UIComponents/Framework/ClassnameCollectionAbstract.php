@@ -19,7 +19,7 @@ namespace UIComponents\Framework;
  * abstract UI framework classname collection
  *        
  */
-abstract class ClassnameCollectionAbstract implements ClassnameCollectionInterface {
+abstract class ClassnameCollectionAbstract {
 	
 	/** @var  string  $framework  framework names, these classnames are related to */
 	public $framework = "Bootstrap";

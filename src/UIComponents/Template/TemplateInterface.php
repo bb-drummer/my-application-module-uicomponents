@@ -34,27 +34,21 @@ interface TemplateInterface
 	 *
 	 * @return void
 	 */
-	function set($which = 's', $needle, $replacement)
-	{
-	}
+	public function set($which = 's', $needle, $replacement);
 
 	/**
 	 * Iterate internal counter by one
 	 *
 	 * @return void
 	 */
-	function next()
-	{
-	}
+	public function next();
 
 	/**
 	 * Reset template data
 	 *
 	 * @return void
 	 */
-	function reset()
-	{
-	}
+	public function reset();
 
 	/**
 	 * Generate the template and
@@ -65,9 +59,7 @@ interface TemplateInterface
 	 *
 	 * @return string complete Template string
 	 */
-	function generate($template, $return = 0)
-	{
-	}
+	public function generate($template, $return = 0);
 
 	
 }
