@@ -28,7 +28,7 @@ class Framework extends \UIComponents\View\Helper\AbstractHelper
     
     const NS = "\UIComponents\Framework";
 
-    public static $framework = "Bootstrap3";
+    public $framework = "Bootstrap3";
     
     /**
      * View helper entry point:

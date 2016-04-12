@@ -966,7 +966,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
      *                        sets no ACL object.
      * @return void
      */
-    public static function setDefaultAcl(Acl\AclInterface $acl = null)
+    static function setDefaultAcl(Acl\AclInterface $acl = null)
     {
         static::$defaultAcl = $acl;
     }
@@ -981,7 +981,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
      * @return void
      * @throws Exception\InvalidArgumentException if role is invalid
      */
-    public static function setDefaultRole($role = null)
+    public function setDefaultRole($role = null)
     {
         if (null === $role
             || is_string($role)
