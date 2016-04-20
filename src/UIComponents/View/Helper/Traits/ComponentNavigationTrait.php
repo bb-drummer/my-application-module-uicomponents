@@ -331,7 +331,7 @@ trait ComponentNavigationTrait {
              */
             $sl = $this->getServiceLocator();
             if ($sl instanceof \Zend\View\HelperPluginManager) {
-                //$sl = $sl->getServiceLocator();
+                $sl = $sl->getServiceLocator();
             }
             $container = $sl->get($container);
             return;
@@ -399,7 +399,7 @@ trait ComponentNavigationTrait {
      *
      * @abstract
      * @return ServiceLocatorInterface
-     */
+     * /
     abstract public function getServiceLocator();
     
     /**
@@ -409,7 +409,7 @@ trait ComponentNavigationTrait {
      * Implements {@link HelperInterface::getAcl()}.
      *
      * @return Acl\AclInterface|null    ACL object or null
-     */
+     * /
     abstract public function getAcl();
     
     /**
@@ -418,7 +418,7 @@ trait ComponentNavigationTrait {
      * Implements {@link HelperInterface::getUseAcl()}.
      *
      * @return bool
-     */
+     * /
     abstract public function getUseAcl();
 
     /**
@@ -428,9 +428,9 @@ trait ComponentNavigationTrait {
      * Implements {@link HelperInterface::getRole()}.
      *
      * @return string|Acl\Role\RoleInterface|null
-     */
+     * /
     abstract public function getRole();
-    
+    */
 }
 
 ?>
