@@ -235,7 +235,10 @@ class AbstractProxyHelper extends AbstractHelper
      */
     protected function inject(\Zend\View\Helper\AbstractHelper $helper)
     {
-		//if ( $helper instanceof \UIComponents\View\Helper\AbstractHelper ) {
+		if ( 
+			($helper instanceof \UIComponents\View\Helper\AbstractHelper) ||
+			($helper instanceof \UIComponents\View\Helper\Navigation\Menu) 
+		) {
 	        if ($this->getInjectContainer() && !$helper->hasContainer()) {
 	            $helper->setContainer($this->getContainer());
 	        }
@@ -254,7 +257,7 @@ class AbstractProxyHelper extends AbstractHelper
 	                $this->getTranslatorTextDomain()
 	            );
 	        }
-		//}
+		}
     }
 
     /**
