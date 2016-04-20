@@ -34,7 +34,7 @@ class Formgroup extends Void
      *
      * @param  array|StdClass $formoptions [optional] component options to operate on
      * @param  string $field [optional] component options to operate on
-     * @return self
+     * @return string|self
      */
     public function __invoke($formoptions = array(), $field = null) {
         parent::__invoke(array());
@@ -64,12 +64,14 @@ class Formgroup extends Void
             $this->addClass('has-error');
         }
         $this->setHeader( $this->getView()->formLabel($field) );
+        /** @var \Zend\Form\View\HelperConfig $formPlugins */
+        $formPlugins = $this->getView();
         if ( $field->getAttribute('type') == 'select' ) {
-            $this->setContent( $this->getView()->formSelect($field->setAttributes(array('class' => 'form-control'))) );
+            $this->setContent( $formPlugins->formSelect($field->setAttributes(array('class' => 'form-control'))) );
         } else {
-            $this->setContent( $this->getView()->formInput($field->setAttributes(array('class' => 'form-control'))) );
+            $this->setContent( $formPlugins->formInput($field->setAttributes(array('class' => 'form-control'))) );
         }
-        $this->setFooter( $this->getView()->formElementErrors($field) );
+        $this->setFooter( $formPlugins->formElementErrors($field) );
         
         $component = clone $this;
         return $component;

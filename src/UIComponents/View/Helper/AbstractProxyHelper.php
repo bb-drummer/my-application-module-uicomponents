@@ -74,14 +74,14 @@ class AbstractProxyHelper extends AbstractHelper
     /**
      * AbstractContainer to operate on by default
      *
-     * @var Navigation\AbstractContainer
+     * @var Navigation\AbstractContainer|Navigation\Navigation|\Zend\Navigation\AbstractContainer
      */
     protected $container;
 
     /**
      * Helper entry point
      *
-     * @param  string|AbstractContainer $container container to operate on
+     * @param  array $options option to operate on
      * @return Components
      */
     public function __invoke($options = array())
@@ -155,7 +155,7 @@ class AbstractProxyHelper extends AbstractHelper
      * If no container is set, a new container will be instantiated and
      * stored in the helper.
      *
-     * @return Navigation\AbstractContainer    navigation container
+     * @return Navigation\AbstractContainer|\Zend\Navigation\AbstractContainer    navigation container
      */
     public function getContainer()
     {
@@ -190,7 +190,7 @@ class AbstractProxyHelper extends AbstractHelper
      *                                  thrown if something goes
      *                                  wrong. Default is true.
      * @throws Exception\RuntimeException if $strict is true and helper cannot be found
-     * @return \UIComponents\View\Helper\Components\HelperInterface  helper instance
+     * @return boolean|\UIComponents\View\Helper\Components\HelperInterface  helper instance
      */
     public function findHelper($proxy, $strict = true)
     {
@@ -235,25 +235,26 @@ class AbstractProxyHelper extends AbstractHelper
      */
     protected function inject(\Zend\View\Helper\AbstractHelper $helper)
     {
-        if ($this->getInjectContainer() && !$helper->hasContainer()) {
-            $helper->setContainer($this->getContainer());
-        }
-
-        if ($this->getInjectAcl()) {
-            if (!$helper->hasAcl()) {
-                $helper->setAcl($this->getAcl());
-            }
-            if (!$helper->hasRole()) {
-                $helper->setRole($this->getRole());
-            }
-        }
-
-        if ($this->getInjectTranslator() && !$helper->hasTranslator()) {
-            $helper->setTranslator(
-                $this->getTranslator(),
-                $this->getTranslatorTextDomain()
-            );
-        }
+		if ( $helper instanceof \UIComponents\View\Helper\AbstractHelper ) {
+	        if ($this->getInjectContainer() && !$helper->hasContainer()) {
+	            $helper->setContainer($this->getContainer());
+	        }
+	
+	        if ($this->getInjectAcl()) {
+	            if (!$helper->hasAcl()) {
+	                $helper->setAcl($this->getAcl());
+	            }
+	            if (!$helper->hasRole()) {
+	                $helper->setRole($this->getRole());
+	            }
+	        }
+	        if ($this->getInjectTranslator() && !$helper->hasTranslator()) {
+	            $helper->setTranslator(
+	                $this->getTranslator(),
+	                $this->getTranslatorTextDomain()
+	            );
+	        }
+		}
     }
 
     /**

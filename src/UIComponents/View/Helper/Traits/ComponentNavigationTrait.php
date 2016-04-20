@@ -17,9 +17,11 @@ namespace UIComponents\View\Helper\Traits;
 
 use Zend\Navigation\AbstractContainer;
 use \Zend\Navigation\Page\AbstractPage;
+use Admin\View\Helper\Isallowed;
 
 /**
  *
+ * @method \Admin\View\Helper\Isallowed isAllowed($resource)
  * @author bba
  *        
  */
@@ -66,7 +68,7 @@ trait ComponentNavigationTrait {
      * Implements {@link HelperInterface::setContainer()}.
      *
      * @param    string|Navigation\AbstractContainer $container Default is null, meaning container will be reset.
-     * @return AbstractHelper
+     * @return self
      */
     public function setContainer($container = null)
     {
@@ -84,7 +86,7 @@ trait ComponentNavigationTrait {
      * If no container is set, a new container will be instantiated and
      * stored in the helper.
      *
-     * @return Navigation\AbstractContainer    navigation container
+     * @return Navigation\AbstractContainer|Components    navigation container
      */
     public function getContainer()
     {
@@ -105,6 +107,21 @@ trait ComponentNavigationTrait {
     public function hasContainer()
     {
         return null !== $this->container;
+    }
+
+    /**
+     * Retrieve whitespace representation of $indent
+     *
+     * @param    int|string $indent
+     * @return string
+     */
+    protected function getWhitespace($indent)
+    {
+        if (is_int($indent)) {
+            $indent = str_repeat(' ', $indent);
+        }
+
+        return (string) $indent;
     }
 
     /**
@@ -313,7 +330,7 @@ trait ComponentNavigationTrait {
              * HelperPluginManager, access the navigation container via the main service locator.
              */
             $sl = $this->getServiceLocator();
-            if ($sl instanceof View\HelperPluginManager) {
+            if ($sl instanceof \Zend\View\HelperPluginManager) {
                 $sl = $sl->getServiceLocator();
             }
             $container = $sl->get($container);
@@ -377,6 +394,43 @@ trait ComponentNavigationTrait {
         return $accept;
     }
 
+    /**
+     * Get the service locator.
+     *
+     * @abstract
+     * @return ServiceLocatorInterface
+     */
+    abstract public function getServiceLocator();
+    
+    /**
+     * Returns ACL or null if it isn't set using {@link setAcl()} or
+     * {@link setDefaultAcl()}
+     *
+     * Implements {@link HelperInterface::getAcl()}.
+     *
+     * @return Acl\AclInterface|null    ACL object or null
+     */
+    abstract public function getAcl();
+    
+    /**
+     * Returns whether ACL should be used
+     *
+     * Implements {@link HelperInterface::getUseAcl()}.
+     *
+     * @return bool
+     */
+    abstract public function getUseAcl();
+
+    /**
+     * Returns ACL role to use when iterating pages, or null if it isn't set
+     * using {@link setRole()} or {@link setDefaultRole()}
+     *
+     * Implements {@link HelperInterface::getRole()}.
+     *
+     * @return string|Acl\Role\RoleInterface|null
+     */
+    abstract public function getRole();
+    
 }
 
 ?>

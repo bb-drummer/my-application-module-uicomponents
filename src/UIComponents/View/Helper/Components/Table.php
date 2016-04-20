@@ -24,13 +24,16 @@ use UIComponents\Template\Template;
  */
 class Table extends Void 
 {
-    
+    /** @var \UIComponents\Template\Template $template */
 	public $template = null;
-	
+
+	/** @var array $data */
 	public $data = array();
-	
+
+	/** @var array $options */
 	public $options = array();
-	
+
+	/** @var array $tags */
 	public $tags = array(
 		"container" =>	"table",
 		"row"		=>	"tr",
@@ -99,7 +102,7 @@ class Table extends Void
     /**
      * generate framework classnames collection as zend-config object
      * 
-     * @return \Zend\Config\Config
+     * @return string
      */
     public function render()
     {
@@ -108,7 +111,8 @@ class Table extends Void
     
 	/**
 	 * generate table header HTML
-	 * @param OBJECT $params
+	 * @param mixed $aHTMLTableColumns
+	 * @return self
 	 */
 	public function buildHeaderCells ($aHTMLTableColumns) {
 		$sHTMLTableHeader = "";
@@ -124,14 +128,15 @@ class Table extends Void
 				$sHTMLTableColumnGroup .= "<column class=\"col_".$iColumn."\" />";
 			}
 		}
-		$this->_sHeader = $sHTMLTableHeader;
 		$this->getTemplate()->set('s', 'HEADERCELLS', $sHTMLTableHeader);
 		$this->getTemplate()->set('s', 'COLUMNGROUP', "<columns>".$sHTMLTableColumnGroup."</columns>");
+		return ($this);
 	}
 		
 	/**
 	 * generate table footer HTML
-	 * @param OBJECT $params
+	 * @param mixed $aHTMLTableColumns
+	 * @return self
 	 */
 	public function buildFooterCells ($aHTMLTableColumns) {
 		$sHTMLTableFooter = "";
@@ -144,18 +149,18 @@ class Table extends Void
 				$sHTMLTableFooter .= "<".$this->tags->cell." class=\"col_".$iColumn."\">".$aColumn["title"]."</".$this->tags->cell.">";
 			}
 		}
-		$this->_sFooter = $sHTMLTableFooter;
 		$this->getTemplate()->set('s', 'FOOTERCELLS', $sHTMLTableFooter);
+		return ($this);
 	}
 	
 	/**
 	 * generate table body HTML
-	 * @param OBJECT $params
-	 * @return ARRAY
+	 * @param array $aRowData
+	 * @param mixed $aHTMLTableColumns
+	 * @return array
 	 */
 	public function buildBodyCells ($aRowData, $aHTMLTableColumns) {
 		$aRows = array();
-		$this->_aRows = array();
 		foreach ( (array)$aRowData as $iRow => $oRowData ) {
 			$sCells = "";
 			foreach ((array)$aHTMLTableColumns as $iColumn => $aColumn) {
@@ -175,7 +180,6 @@ class Table extends Void
 			
 			$aRows[] = $sCells;
 		}
-		$this->_aRows = $aRows;
 		
 		foreach ($aRows as $iRow => $sRow) {
 			$this->getTemplate()->set('d', 'ROWID', "row_".$aRowData[$iRow]["productID"]);
@@ -192,7 +196,7 @@ class Table extends Void
 	
 	/**
 	 * generate mini table mark-up template
-	 * @return STRING
+	 * @return string
 	 */
 	public function buildMarkupTemplate () {
 		$aHTML = array(
@@ -216,7 +220,7 @@ class Table extends Void
 	
 	/**
 	 * generate table mark-up
-	 * @return STRING
+	 * @return string
 	 */
 	public function buildMarkup () {
 		$sHTML = "";
@@ -242,11 +246,11 @@ class Table extends Void
 	
 	/**
 	 * generate table JSON data
-	 * @return STRING
+	 * @return string
 	 */
 	public function buildData () {
 		$sJSON = "[]";
-		if ($this->data) {
+		if (!empty($this->data)) {
 			$sJSON = json_encode($this->data);
 		}
 		return $sJSON;
@@ -279,7 +283,7 @@ class Table extends Void
 	
 	/**
 	 * return table data
-	 * @return MIXED
+	 * @return mixed
 	 */
 	public function getData() {
 		return $this->data;
@@ -287,7 +291,7 @@ class Table extends Void
 
 	/**
 	 * set new table data
-	 * @param MIXED $data
+	 * @param mixed $data
 	 * @return ProductTable
 	 */
 	public function setData( $data = null) {
@@ -299,8 +303,8 @@ class Table extends Void
 
 	/**
 	 * return option by key or complete option set
-	 * @param	STRING $key	
-	 * @return	MIXED
+	 * @param	string $key	
+	 * @return	mixed
 	 */
 	public function getOptions( $key = "" ) {
 		if ( !empty($key) ) { 
@@ -314,7 +318,7 @@ class Table extends Void
 	}
 
 	/**
-	 * @param OBJECT|ARRAY $options
+	 * @param object|array $options
 	 * @return ProductTable
 	 */
 	public function setOptions($options) {
@@ -323,7 +327,7 @@ class Table extends Void
 		} else if ( is_object($options) ) {
 			$this->options = (array)$options;
 		} else {
-			throw new Exception("invalid table options");
+			throw new \Exception("invalid table options");
 		}
 		if ( isset($this->options["data"]) ) {
 			$this->setData($this->getOptions("data"));

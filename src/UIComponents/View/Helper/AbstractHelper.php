@@ -173,21 +173,6 @@ abstract class AbstractHelper extends \Zend\View\Helper\AbstractHtmlElement impl
     // Util methods:
 
     /**
-     * Retrieve whitespace representation of $indent
-     *
-     * @param    int|string $indent
-     * @return string
-     */
-    protected function getWhitespace($indent)
-    {
-        if (is_int($indent)) {
-            $indent = str_repeat(' ', $indent);
-        }
-
-        return (string) $indent;
-    }
-
-    /**
      * Returns an HTML string containing an 'a' element for the given page
      *
      * @param    AbstractPage $page    page to generate HTML for
