@@ -138,7 +138,7 @@ class Menu extends \Zend\View\Helper\Navigation\Menu
      *                                        from {@link getContainer()}.
      * @param    array             $options    [optional] options for controlling rendering
      * @return string
-     * /
+     */
     public function renderMenu($container = null, array $options = [])
     {
         $this->parseContainer($container);
