@@ -331,7 +331,7 @@ trait ComponentNavigationTrait {
              */
             $sl = $this->getServiceLocator();
             if ($sl instanceof \Zend\View\HelperPluginManager) {
-                $sl = $sl->getServiceLocator();
+                //$sl = $sl->getServiceLocator();
             }
             $container = $sl->get($container);
             return;
