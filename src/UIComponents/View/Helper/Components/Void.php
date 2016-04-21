@@ -29,7 +29,7 @@ class Void extends \UIComponents\View\Helper\AbstractHelper
      * Retrieves helper and optionally sets component options to operate on
      *
      * @param  array|StdClass $options [optional] component options to operate on
-     * @return self
+     * @return string|self
      */
     public function __invoke($options = array())
     {
