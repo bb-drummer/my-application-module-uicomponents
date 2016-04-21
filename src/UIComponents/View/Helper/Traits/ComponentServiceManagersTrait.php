@@ -15,6 +15,7 @@
 
 namespace UIComponents\View\Helper\Traits;
 
+use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
