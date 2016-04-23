@@ -15,8 +15,8 @@
 
 return array(
     'controllers' => array(
-        'invokables' => array(
-            'UIComponents\Controller\Components' => 'UIComponents\Controller\ComponentsController',
+        'factories' => array(
+            'UIComponents\Controller\Components' => 'UIComponents\Factory\ComponentsControllerFactory',
         ),
     ),
     'router' => array(
