@@ -89,13 +89,13 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
                     $utilities->setAcl($acl);
                     $utilities->setServiceLocator($oHelperPluginManager->getServiceLocator());
                     
-                    /*$oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
+                    $oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
                     if ( $oAuth->hasIdentity() ) {
                         $oUser = $oAuth->getIdentity();
                         $utilities->setRole( $oUser->getAclrole() );
                     } else {
                         $utilities->setRole('public');
-                    }*/
+                    }
                     
                     return $utilities;
                 },
@@ -109,13 +109,13 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
                     $components->setAcl($acl);
                     $components->setServiceLocator($oHelperPluginManager->getServiceLocator());
                     
-                    /*$oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
+                    $oAuth = $oHelperPluginManager->getServiceLocator()->get('zfcuser_auth_service');
                     if ( $oAuth->hasIdentity() ) {
                         $oUser = $oAuth->getIdentity();
                         $components->setRole( $oUser->getAclrole() );
                     } else {
                         $components->setRole('public');
-                    }*/
+                    }
                     
                     return $components;
                 },
