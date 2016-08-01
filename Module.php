@@ -116,7 +116,7 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
                     } else {
                         $components->setRole('public');
                     }
-                    
+
                     return $components;
                 },
                 'toolbar' => function(HelperPluginManager $oHelperPluginManager) {

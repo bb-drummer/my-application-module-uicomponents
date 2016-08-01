@@ -39,7 +39,6 @@ class Formgroup extends Void
     public function __invoke($formoptions = array(), $field = null) {
         parent::__invoke(array());
         $form = null; 
-        $field = null;
         if ( !is_array($formoptions) && ($formoptions instanceof \Zend\Form\Form) && (func_num_args() == 2) ) {
             $form    = $formoptions;
             $field    = func_get_arg(1);
@@ -51,7 +50,7 @@ class Formgroup extends Void
             return "";
         }
         $this->setForm($form);
-        
+
         if ( is_string($field) ) {
             $field = $form->get($field);
             if (!$field) {
