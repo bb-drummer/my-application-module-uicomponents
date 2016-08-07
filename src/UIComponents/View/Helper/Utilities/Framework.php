@@ -41,14 +41,14 @@ class Framework extends \UIComponents\View\Helper\AbstractHelper
     public function __invoke( $framework = null )
     {
         if ($framework !== null) {
-            $classname = self::NS . "\\" . $framework;
+            $classname = $this->NS . "\\" . $framework;
             if (!class_exists($classname)) {
                 throw new \Zend\View\Exception\InvalidArgumentException(sprintf( 
                     $this->translate("Invalid framework collection '%s' specified"),
                     $framework
                 ));
             }
-            self::$framework = $framework;
+            $this->framework = $framework;
         }
         
         return $this->getCollection();
@@ -61,15 +61,35 @@ class Framework extends \UIComponents\View\Helper\AbstractHelper
      */
     public function getCollection()
     {
-        $classname = self::NS . "\\" . self::$framework;
+        $classname = $this->NS . "\\" . $this->framework;
         if (!class_exists($classname)) {
             throw new \Zend\View\Exception\InvalidArgumentException(sprintf( 
                 $this->translate("Invalid framework collection '%s' specified"),
-                self::$framework
+                $this->framework
             ));
         }
         $collection = new $classname;
         return $collection;
     }
+    
+	/**
+	 * retrieve UI framework id/name
+	 * @return string the $framework
+	 */
+	public function getFramework() {
+		return $this->framework;
+	}
+
+	/**
+	 * set UI framework id/name
+	 * @param string $framework
+	 * @return \UIComponents\View\Helper\Utilities\Framework
+	 */
+	public function setFramework($framework) {
+		$this->framework = $framework;
+		return $this;
+	}
+
+    
     
 }

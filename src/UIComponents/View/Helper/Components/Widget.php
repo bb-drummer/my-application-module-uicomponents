@@ -37,6 +37,21 @@ class Widget extends Void
     {
         parent::__invoke($options);
         return $this;
+
+        /* render partial template 
+		use Zend\View\Model\ViewModel;
+		use Zend\View\Renderer\PhpRenderer;
+		
+        $viewRender = new PhpRenderer();
+        $viewRender->resolver()->addPath(__DIR__.'/view/');
+        
+        $viewModel = new ViewModel();
+        $viewModel->setVariables($user->__getArrayCopy());
+        $viewModel->setVariable('confirmation_url', $config["zfcuser_mail_http_basepath"].'/confirmuserregistration/' . $user->getId() . '/' . $user->getToken());
+
+        $viewModel->setTemplate('pathto/template_phtml');
+        $htmlMarkup = $viewRender->render($viewModel);
+        */ 
     }
     
     
