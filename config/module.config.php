@@ -2,7 +2,7 @@
 /**
  * BB's Zend Framework 2 Components
  * 
- * UI Components
+ * UI Components module configuration
  *
  * @package     [MyApplication]
  * @subpackage  BB's Zend Framework 2 Components

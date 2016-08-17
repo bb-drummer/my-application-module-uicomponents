@@ -12,7 +12,7 @@ namespace UIComponentsTest;
 class UIComponentsTest extends Framework\TestCase
 {
 
-    public function testSample()
+    public function testLocator()
     {
         $this->assertInstanceOf('Zend\Di\LocatorInterface', $this->getLocator());
     }

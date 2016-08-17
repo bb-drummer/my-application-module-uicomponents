@@ -2,6 +2,7 @@
 
 namespace UIComponentsTest;
 
+use ApplicationTest\Bootstrap as ApplicationTestBootstrap;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
@@ -13,10 +14,10 @@ chdir(__DIR__);
 /**
  * Test bootstrap, for setting up autoloading
  */
-class Bootstrap
+class Bootstrap extends ApplicationTestBootstrap
 {
-    protected static $serviceManager;
-
+/*    protected static $serviceManager;
+*/
     public static function init()
     {
         $zf2ModulePaths = array(dirname(dirname(__DIR__)));
@@ -41,12 +42,14 @@ class Bootstrap
             )
         );
 
+        $config = array_merge_recursive(static::getApplicationConfig(), $config);
+        
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
         $serviceManager->get('ModuleManager')->loadModules();
         static::$serviceManager = $serviceManager;
     }
-
+/*
     public static function chroot()
     {
         $rootPath = dirname(static::findParentPath('module'));
@@ -95,6 +98,31 @@ class Bootstrap
         }
         return $dir . '/' . $path;
     }
+
+    protected static function getApplicationConfig()
+    {
+        $applicationGlobalConfigFile    = __DIR__ . '/../../../config/application.config.php';
+        $genericGlobalConfigFile    = __DIR__ . '/../../../config/autoload/global.php';
+        
+        $localConfigs = array();
+        $files = scandir(__DIR__ . '/../../../config/autoload/');
+        
+        foreach ($files as $key => $filename) {
+            $filepath = __DIR__ . '/../../../config/autoload/' . $filename ;
+            if ((strpos($filename, 'local.php') !== false) && is_readable($filepath) ) { 
+                array_merge_recursive($localConfigs, include $filepath);
+            }
+        }
+        
+        // load setting from DB...
+        
+        return array_merge_recursive(
+            ( is_readable($applicationGlobalConfigFile) ? include $applicationGlobalConfigFile : array() ),
+            ( is_readable($genericGlobalConfigFile) ? include $genericGlobalConfigFile : array() ),
+            $localConfigs
+        );
+    }
+*/
 }
 
 Bootstrap::init();
