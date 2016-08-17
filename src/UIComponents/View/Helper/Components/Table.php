@@ -104,7 +104,7 @@ class Table extends Void
      * 
      * @return string
      */
-    public function render()
+    public function render($container = NULL)
     {
     	return $this->buildMarkup();
     }
