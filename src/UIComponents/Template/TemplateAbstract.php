@@ -13,7 +13,7 @@
  * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
-namespace UIComponents\Template;
+namespace UIComponents;
 
 use Zend\I18n\Translator\TranslatorAwareInterface;
 use \UIComponents\Translator\TranslatorAwareInterfaceTrait;

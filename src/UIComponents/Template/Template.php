@@ -13,7 +13,7 @@
  * @copyright   copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
  */
 
-namespace UIComponents\Template;
+namespace UIComponents;
 
 /**
  * light template mechanism
