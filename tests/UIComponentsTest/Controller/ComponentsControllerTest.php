@@ -28,7 +28,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
         $this->setController(new IndexController( $serviceLocator ));
         $this->getController()->setServiceLocator( $serviceLocator );
         $this->setRequest(new Request());
-        $this->setRouteMatch(new RouteMatch(array('controller' => '\UIComponents\Controller\Index', 'action' => 'index')));
+        $this->setRouteMatch(new RouteMatch(array('controller' => '\UIComponents\Controller\Components', 'action' => 'index')));
         $this->setEvent(new MvcEvent());
         $config = $serviceLocator->get('Config');
         $routerConfig = isset($config['router']) ? $config['router'] : array();
