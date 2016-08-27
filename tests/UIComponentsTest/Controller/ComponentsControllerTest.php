@@ -64,7 +64,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
     public function testPanelsActionCanBeDispatched()
     {
         // redirect to whatever is set in route/navigation configuration
-        $this->routeMatch->setParam('action', 'index');
+        $this->routeMatch->setParam('action', 'panels');
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
@@ -78,7 +78,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
     public function testControlsActionCanBeDispatched()
     {
         // redirect to whatever is set in route/navigation configuration
-        $this->routeMatch->setParam('action', 'index');
+        $this->routeMatch->setParam('action', 'controls');
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
@@ -92,7 +92,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
     public function testFormsActionCanBeDispatched()
     {
         // redirect to whatever is set in route/navigation configuration
-        $this->routeMatch->setParam('action', 'index');
+        $this->routeMatch->setParam('action', 'forms');
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
@@ -106,7 +106,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
     public function testTablesActionCanBeDispatched()
     {
         // redirect to whatever is set in route/navigation configuration
-        $this->routeMatch->setParam('action', 'index');
+        $this->routeMatch->setParam('action', 'tables');
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
@@ -120,7 +120,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
     public function testWidgetsActionCanBeDispatched()
     {
         // redirect to whatever is set in route/navigation configuration
-        $this->routeMatch->setParam('action', 'index');
+        $this->routeMatch->setParam('action', 'widgets');
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
