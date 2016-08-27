@@ -28,7 +28,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
         $this->setController(new IndexController( $serviceLocator ));
         $this->getController()->setServiceLocator( $serviceLocator );
         $this->setRequest(new Request());
-        $this->setRouteMatch(new RouteMatch(array('controller' => '\Admin\Controller\Index', 'action' => 'index')));
+        $this->setRouteMatch(new RouteMatch(array('controller' => '\UIComponents\Controller\Index', 'action' => 'index')));
         $this->setEvent(new MvcEvent());
         $config = $serviceLocator->get('Config');
         $routerConfig = isset($config['router']) ? $config['router'] : array();
@@ -53,6 +53,7 @@ class ComponentsControllerTest extends ActionControllerTestCase
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertInstanceOf("Zend\View\VewModel", $result);
     }
     
     /**
