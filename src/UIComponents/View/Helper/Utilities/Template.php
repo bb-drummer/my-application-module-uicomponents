@@ -15,7 +15,7 @@
 
 namespace UIComponents\View\Helper\Utilities;
 
-use \UIComponents\Template\Template;
+use \UIComponents\Template as UITemplate;
 
 /**
  *
@@ -33,7 +33,7 @@ class Template extends \UIComponents\View\Helper\AbstractHelper
      */
     public function __invoke()
     {
-        return new Template();
+        return new UITemplate();
     }
     
 }
