@@ -9,9 +9,9 @@
 
 namespace UIComponentsTest\Framework;
 
-use PHPUnit_Framework_TestCase;
+use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionControllerTestCase;
 
-class TestCase extends PHPUnit_Framework_TestCase
+class TestCase extends ApplicationActionControllerTestCase
 {
 
     public static $locator;
