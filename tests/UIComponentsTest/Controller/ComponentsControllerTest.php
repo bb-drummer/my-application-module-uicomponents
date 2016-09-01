@@ -1,8 +1,8 @@
 <?php
 namespace UIComponentsTest\Controller;
 
-use \UIComponents\Controller\Components,
-    \UIComponentsTest\Framework\TestCase as ActionControllerTestCase,
+use UIComponents\Controller\Components,
+    UIComponentsTest\Framework\TestCase as ComponentsControllerTestCase,
     Zend\Http\Request,
     Zend\Http\Response,
     Zend\Http\Router,
@@ -14,7 +14,7 @@ use \UIComponents\Controller\Components,
 /**
  * @coversDefaultClass \UIComponents\Controller\ComponentsController
  */
-class ComponentsControllerTest extends ActionControllerTestCase
+class ComponentsControllerTest extends ComponentsControllerTestCase
 {
     
     /**
