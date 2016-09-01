@@ -2,7 +2,7 @@
 namespace UIComponentsTest\Controller;
 
 use \UIComponents\Controller\Components,
-    \UIComponents\Framework\TestCase as ActionControllerTestCase,
+    \UIComponentsTests\Framework\TestCase as ActionControllerTestCase,
     Zend\Http\Request,
     Zend\Http\Response,
     Zend\Http\Router,
