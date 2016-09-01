@@ -9,7 +9,9 @@
 
 namespace UIComponentsTest;
 
-class UIComponentsTest extends Framework\TestCase
+use UIComponentsTest\Framework\TestCase as UIComponentsTestCase;
+
+class UIComponentsTest extends UIComponentsTestCase
 {
 
     public function testLocator()
