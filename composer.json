@@ -15,7 +15,8 @@
   },
   "autoload" : {
     "psr-0" : {
-      "UIComponents" : "src/"
+      "UIComponents" : "src/",
+      "UIComponentsTest" : "test/"
     },
     "classmap" : [ "./Module.php", "./src/", "./test/" ]
   },
