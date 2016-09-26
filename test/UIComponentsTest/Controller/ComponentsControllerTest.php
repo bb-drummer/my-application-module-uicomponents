@@ -14,7 +14,7 @@ use UIComponentsTest\Framework\TestCase,
 /**
  * @coversDefaultClass \UIComponents\Controller\ComponentsController
  */
-class ComponentsControllerTest extends \UIComponentsTest\Framework\TestCase
+class ComponentsControllerTest extends ApplicationActionControllerTestCase // UIComponentsTest\Framework\TestCase
 {
     
     /**
