@@ -1,7 +1,7 @@
 <?php
 namespace UIComponentsTest\Controller;
 
-use UIComponents\Controller\Components,
+use UIComponents\Controller\ComponentsContoller,
     UIComponentsTest\Framework\TestCase as ComponentsControllerTestCase,
     Zend\Http\Request,
     Zend\Http\Response,
