@@ -2,6 +2,8 @@
 namespace UIComponentsTest;
 
 use UIComponentsTest\Framework\TestCase as UIComponentsTestCase;
+use phpDocumentor\Reflection\Types\This;
+use Zend\Di\ServiceLocator as ZendServiceLocator;
 
 /**
  * [MyApplication] UIComponents module tests
@@ -19,6 +21,7 @@ class UIComponentsTest extends UIComponentsTestCase
 
     public function testLocator()
     {
+    	$this->setLocator( new ZendServiceLocator )
         $this->assertInstanceOf('Zend\Di\LocatorInterface', $this->getLocator());
     }
 }
