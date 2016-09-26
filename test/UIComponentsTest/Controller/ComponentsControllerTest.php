@@ -8,7 +8,8 @@ use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionCont
     Zend\Http\Router,
     Zend\Mvc\MvcEvent,
     Zend\Mvc\Router\RouteMatch,
-    Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter
+    Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter,
+    Zend\View\VewModel
 ;
 
 /**
