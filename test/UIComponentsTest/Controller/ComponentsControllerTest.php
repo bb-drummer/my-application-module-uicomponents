@@ -54,7 +54,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\\View\\ViewModel", $result);
     }
     
     /**
