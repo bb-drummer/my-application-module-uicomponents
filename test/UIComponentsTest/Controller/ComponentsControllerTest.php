@@ -9,7 +9,7 @@ use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionCont
     Zend\Mvc\MvcEvent,
     Zend\Mvc\Router\RouteMatch,
     Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter,
-    Zend\View\ViewModel
+    Zend\View\Model\ViewModel
 ;
 
 /**
@@ -54,7 +54,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\\View\\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
     /**
@@ -69,7 +69,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
     /**
@@ -84,7 +84,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
         /**
@@ -99,7 +99,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
     /**
@@ -114,7 +114,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
     /**
@@ -129,7 +129,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
 /**
@@ -141,7 +141,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
         $result = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertInstanceOf("Zend\View\ViewModel", $result);
+        $this->assertInstanceOf("Zend\View\Model\ViewModel", $result);
     }
     
 }
