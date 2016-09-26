@@ -21,7 +21,7 @@ class UIComponentsTest extends UIComponentsTestCase
 
     public function testLocator()
     {
-    	$this->setLocator( new ZendServiceLocator )
+    	$this->setLocator( new ZendServiceLocator );
         $this->assertInstanceOf('Zend\Di\LocatorInterface', $this->getLocator());
     }
 }
