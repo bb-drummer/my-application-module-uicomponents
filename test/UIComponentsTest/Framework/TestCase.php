@@ -25,4 +25,5 @@ class TestCase extends ApplicationActionControllerTestCase
     {
         return self::$locator;
     }
+    
 }
