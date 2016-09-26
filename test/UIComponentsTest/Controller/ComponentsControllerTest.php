@@ -1,8 +1,9 @@
 <?php
 namespace UIComponentsTest\Controller;
 
-use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionControllerTestCase;
-use UIComponentsTest\Framework\TestCase,
+use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionControllerTestCase,
+	UIComponents\Controller\Components,
+	UIComponentsTest\Framework\TestCase,
     Zend\Http\Request,
     Zend\Http\Response,
     Zend\Http\Router,
@@ -25,7 +26,7 @@ class ComponentsControllerTest extends ApplicationActionControllerTestCase // UI
     {
     	$serviceLocator = $this->getApplicationServiceLocator();
     	
-        $this->setController(new IndexController( $serviceLocator ));
+        $this->setController(new ComponentsController( $serviceLocator ));
         $this->getController()->setServiceLocator( $serviceLocator );
         $this->setRequest(new Request());
         $this->setRouteMatch(new RouteMatch(array('controller' => '\UIComponents\Controller\Components', 'action' => 'index')));
