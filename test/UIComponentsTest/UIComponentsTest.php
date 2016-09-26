@@ -1,16 +1,19 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/Yourmodname for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace UIComponentsTest;
 
 use UIComponentsTest\Framework\TestCase as UIComponentsTestCase;
 
+/**
+ * [MyApplication] UIComponents module tests
+ *
+ * @package   [MyApplication]
+ * @package   BB's Zend Framework 2 Components
+ * @package   AdminModule
+ * @author    Björn Bartels <coding@bjoernbartels.earth>
+ * @link      https://gitlab.bjoernbartels.earth/groups/zf2
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright copyright (c) 2016 Björn Bartels <coding@bjoernbartels.earth>
+ */
 class UIComponentsTest extends UIComponentsTestCase
 {
 
