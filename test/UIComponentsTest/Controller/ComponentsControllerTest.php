@@ -2,9 +2,8 @@
 namespace UIComponentsTest\Controller;
 
 use \ApplicationTest\Framework\ActionControllerTestCase as ApplicationActionControllerTestCase,
-	UIComponents\Controller\Components,
-	UIComponentsTest\Framework\TestCase,
-    Zend\Http\Request,
+	UIComponents\Controller\ComponentsController,
+	Zend\Http\Request,
     Zend\Http\Response,
     Zend\Http\Router,
     Zend\Mvc\MvcEvent,
